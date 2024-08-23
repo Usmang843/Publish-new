@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <form class="text-center" id="myForm" method="post">
+        <label for="rollNo">Roll No:</label>
+        <input class="input-field" type="number" id="rollNo" name="rollNo" required></input>
+        <button class="btn btn-primary btun" type="button" onclick="addFun()">Add Subject</button>
+
+        <div id="inputFields"></div>
+        <button class="btn btn-primary" type="submit" id="enter">Submit</button>
+        <br><br>
+        <button id="resultdata" onclick="checkdata()" type="button" class="btn btn-primary">View Result</button>
+    </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+
+        index = 0;
+        function addFun() {
+            var x = document.createElement("div");
+            x.innerHTML = `
+            <label for="subject${index}">Subject Name:</label>
+            <input type="text" id = "subject${index}"  placeholder="Enter subject Name" class="input-field subject">
+            <label for="marks${index}">Subject Marks:</label>
+            <input type="number" id = "marks${index}" min="0" max="75" placeholder="Enter Subject Marks" class="input-field marks">
+            `;
+            index++;
+            document.getElementById("inputFields").appendChild(x);
+        }
+
+        function checkdata() {
+            const products = JSON.parse(localStorage.getItem('student') || '{}');
+            if (Object.entries(products).length === 0) {
+                alert("Nothing is stored!");
+            }
+            else{
+                window.location.href = 'result.html';
+
+
+
+            }
+        };
+        
+        document.querySelector("#myForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (document.querySelectorAll('.subject').length <= 0) {
+                alert("First add an subject against Roll No");
+            }
+            else if (Array.from(document.querySelectorAll('.subject')).some((item) => !item.value)) {
+                alert("Please Enter Subjects Name!");
+            }
+            else if(Array.from(document.querySelectorAll('.marks')).some((item) => !item.value)){
+                alert("Please Enter Subjects Marks againt Subject!");
+
+            }
+            else {
+                pushData();
+            }
+        });
+
+        function pushData() {
+            const products = JSON.parse(localStorage.getItem('student') || '{}');
+            let rollNo = document.getElementById("rollNo").value;
+            subjects = [];
+            document.querySelectorAll('.subject').forEach((subjnam) => {
+                subjects.push(subjnam.value);
+            });
+            marks = [];
+            document.querySelectorAll('.marks').forEach((subjmarks) => {
+                marks.push(subjmarks.value);
+            });
+            const data = {
+                subjects,
+                marks
+            }
+
+            products[rollNo] = (data);
+
+            localStorage.setItem('student', JSON.stringify(products));
+        }
+    </script>
+</body>
+
+</html>
