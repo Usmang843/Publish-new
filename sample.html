@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <p id="demo"></p>
+    <script>
+        cars = ["Saab", "Volvo", "BMW"];
+        const myObj = {
+            name: "John",
+            age: 30,
+            myCars: {
+                car1: "Ford",
+                car2: "BMW",
+                car3: "Fiat"
+            },
+            cars
+        }
+        document.getElementById("demo").innerHTML = myObj.cars[1];
+    </script>
+</body>
+
+</html>

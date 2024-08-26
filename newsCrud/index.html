@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <a href="postPage.html">Create New Post</a><br><br>
+    <button id="logoutbtn" type="button" onclick="logout()">Log Out</button>
+
+    <br><br><br><br>
+
+    <div id="postdata">
+
+    </div>
+
+
+    <script>
+
+        sessionDetail = sessionStorage.getItem('currentloggedin');
+        if (!sessionDetail) {
+            window.location.href = "login.html";
+        }
+        
+        const postdata = JSON.parse(localStorage.getItem('postData') || '{}');
+        const getEditedData = JSON.parse(localStorage.getItem('editIdData') || '{}');
+        function showData() {
+            html = ``
+            for (id in postdata) {
+                html += `
+        <h3 id = "title">${postdata[id].title}</h3>
+        <h5 id="desc">${postdata[id].desc}</h5>
+            ${sessionDetail == postdata[id].owner ?
+                        `<br><button type = "button" onclick="editdata(${id})">Edit Post</button>
+            <button type = "button" onclick="deletedata(${id})">Delete Post</button>
+        ` : ''
+                    }
+               <br> `;
+            }
+            document.querySelector("#postdata").innerHTML = html;
+        }
+        showData();
+
+        function editdata(id) {
+            localStorage.setItem("editIdData", id);
+            window.location.href = "editData.html";
+        }
+        function deletedata(id) {
+
+            const postdata = JSON.parse(localStorage.getItem('postData') || '{}')
+            console.log(postdata[id]);
+            delete postdata[id];
+            localStorage.setItem('postData', JSON.stringify(postdata))
+            showData();
+        }
+
+        function logout() {
+            sessionDetail = sessionStorage.setItem('currentloggedin', '')
+            if (!sessionDetail) {
+                window.location.href = "login.html";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

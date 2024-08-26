@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <br><input type="text" id="title" placeholder="Title of the Post" class="title" required><br><br>
+        <input type="text" id="desc" placeholder="Description" class="desc" required><br><br>
+        <button type="submit">Create New Post</button><br><br>
+    </form>
+    <script>
+        addEventListener("submit",(e)=>{
+            e.preventDefault();
+            savedata();
+        });
+        function savedata() {
+            index = 0;
+            sessionDetail = sessionStorage.getItem('currentloggedin');
+            const postdata = JSON.parse(localStorage.getItem('postData') || '{}')
+            Object.keys(postdata).forEach((key) => {
+                console.log(key);
+                if (key > index) {
+                    index = parseInt(key);
+                }
+            });
+            title = document.querySelector('.title').value
+            desc = document.querySelector('.desc').value;
+            const data = {
+                title,
+                desc,
+                owner: sessionDetail
+            }
+
+            if (postdata) {
+                index++;
+                postdata[index] = (data);
+            }
+            localStorage.setItem('postData', JSON.stringify(postdata))
+            window.location.href = "index.html"
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <br>
+    <h1>News Crud Sign Up</h1>
+    <br>
+    <form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" id="email" required></input><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" class="password" required></input><br><br>
+        <input type="submit"></input>
+    </form><br>
+    <h4>Don't hav an account? <a href="signup.html">SignUp</a></h3>
+        <script>
+            sessionDetail = sessionStorage.getItem('currentloggedin');
+
+            if (sessionDetail) {
+                window.location.href = "index.html"
+            }
+
+            addEventListener("submit", (e) => {
+                e.preventDefault();
+                const userData = JSON.parse(sessionStorage.getItem('userData') || '{}')
+                email = document.getElementById("email").value;
+                password = document.getElementById("password").value;
+                console.log(userData[email]);
+                if (!userData[email]) {
+                    alert("User Doesn't exists");
+                }
+                else if (userData[email] && userData[email].password == password) {
+                    const sessionDetail = sessionStorage.setItem("currentloggedin", email);
+                    window.location.href = "index.html";
+
+                }
+                else {
+                    alert("Wrong Password!")
+                }
+
+
+            });
+
+        </script>
+</body>
+
+</html>
