@@ -20,14 +20,12 @@
 
 
     <script>
-
+        const postdata = JSON.parse(localStorage.getItem('postData') || '{}');
         sessionDetail = sessionStorage.getItem('currentloggedin');
         if (!sessionDetail) {
             window.location.href = "login.html";
         }
-        
-        const postdata = JSON.parse(localStorage.getItem('postData') || '{}');
-        const getEditedData = JSON.parse(localStorage.getItem('editIdData') || '{}');
+
         function showData() {
             html = ``
             for (id in postdata) {
@@ -50,9 +48,6 @@
             window.location.href = "editData.html";
         }
         function deletedata(id) {
-
-            const postdata = JSON.parse(localStorage.getItem('postData') || '{}')
-            console.log(postdata[id]);
             delete postdata[id];
             localStorage.setItem('postData', JSON.stringify(postdata))
             showData();

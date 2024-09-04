@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <button id="addRowBtn">Generate Rows</button>
+        <div id="inputRowData"></div>
+        <input type="text" id="cols" name="cols">
+        <button id = "addColumnBtn">Generate Column</button>
+    </div>
+    <table id="dynamicTable">
+        <thead>
+            <tr id="addcols"></tr>
+        </thead>
+        <tbody id="addrows"></tbody>
+    </table>
+
+    <div id="rowInputContainer"></div>
+    <script>
+        let columnCount = 0;
+        let rowCount = 0;
+
+        document.getElementById('addColumnBtn').addEventListener('click', () => {
+            columnCount++;
+            const addcols = document.getElementById('addcols');
+            const th = document.createElement('th');
+            th.innerText = `Column ${columnCount}`;
+            addcols.appendChild(th);
+
+            const addrows = document.getElementById('addrows');
+            const rows = addrows.querySelectorAll('tr');
+            
+            rows.forEach(row => {
+                const td = document.createElement('td');
+                // const input = document.createElement('input');
+                // input.type = 'text';
+                // input.addEventListener('input', updateTable);
+                // td.appendChild(input);
+                td.innerText = `Row ${rowCount}`
+                row.appendChild(td);
+            });
+        });
+
+        document.getElementById('addRowBtn').addEventListener('click', () => {
+            rowCount++;
+            // Create a new row in the table
+            const tableBody = document.getElementById('addrows');
+            const tr = document.createElement('tr');
+            for (let i = 0; i < columnCount; i++) {
+                const td = document.createElement('td');
+                // const input = document.createElement('input');
+                // input.type = 'text';
+                // input.addEventListener('input', updateTable);
+                // td.appendChild(input);
+                td.innerText = `Row ${rowCount}`
+                tr.appendChild(td);
+            }
+            tableBody.appendChild(tr);
+        });
+
+        function updateTable() {
+            // This function updates the table when the input values change
+            const rows = document.querySelectorAll('#dynamicTable tbody tr');
+            rows.forEach((row, rowIndex) => {
+                const cells = row.querySelectorAll('td input');
+                cells.forEach((cell, cellIndex) => {
+                    cell.addEventListener('input', () => {
+                        // Here you can handle the input value if necessary
+                        console.log(`Row: ${rowIndex + 1}, Column: ${cellIndex + 1}, Value: ${cell.value}`);
+                    });
+                });
+            });
+        }
+    </script>
+    
+    </body>
+
+</html>

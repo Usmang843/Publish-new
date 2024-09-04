@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <button id="addRowBtn">Generate Rows</button><br><br>
+        <div id="inputRowData"></div><br>
+        <input type="text" id="cols" name="cols">
+        <button id="addColumnBtn">Generate Column</button>
+    </div>
+    <table id="dynamicTable">
+        <thead>
+            <tr id="addcols"></tr>
+        </thead>
+        <tbody id="addrows"></tbody>
+    </table>
+
+    <div id="rowInputContainer"></div>
+    <script>
+        let columnCount = 0;
+        let rowCount = 0;
+
+        document.getElementById('addColumnBtn').addEventListener('click', () => {
+            columnCount++;
+            const addcols = document.getElementById('addcols');
+            const th = document.createElement('th');
+            th.innerText = `Column ${columnCount}`;
+            addcols.appendChild(th);
+
+            const addrows = document.getElementById('addrows');
+            const rows = addrows.querySelectorAll('tr');
+
+            rows.forEach(row => {
+                const td = document.createElement('td');
+                row.appendChild(td);
+            });
+        });
+
+        document.getElementById('addRowBtn').addEventListener('click', () => {
+            rowCount++;
+            const addrows = document.getElementById('addrows');
+
+            const inputRowData = document.getElementById('inputRowData');
+
+            const tr = document.createElement('tr');
+            for (let i = 0; i < columnCount; i++) {
+                const td = document.createElement('td');
+
+                const addrowdata = document.createElement('input');
+                addrowdata.type  = "text"
+                
+                inputRowData.appendChild(addrowdata);
+
+                td.innerText = `Row ${rowCount}`
+                tr.appendChild(td);
+            }
+            addrows.appendChild(tr);
+        });
+
+    
+    </script>
+
+</body>
+
+</html>

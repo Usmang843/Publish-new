@@ -5,13 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="./getAndShowData/style.css">
+    <button onclick="add()">Sum</button>
 </head>
 
 <body>
     <p id="demo"></p>
     <script>
+        var count = 0;
+        function add() {
+            let countArr = 0, i = 0
+
+            while (i < 12) {
+
+                let countl = 1;
+                countl = countl * 2; // countl = 2
+                countArr = countl;  // counArr = 2 
+                i++
+            }
+            count = countArr * 2 // countArr = 2 from global scope
+        }
+        // add();
+        console.log(count); // count = 0
+        add();
+        console.log(count);// count = 4
+
         cars = ["Saab", "Volvo", "BMW"];
         const myObj = {
             name: "John",
@@ -24,6 +42,97 @@
             cars
         }
         document.getElementById("demo").innerHTML = myObj.cars[1];
+
+        // Create an Object
+        const person = {
+            name: "John",
+            age: 30,
+            city: "New York"
+        };
+
+        // Create an Array
+        let myArray = Object.values(person);
+
+        let text = '';
+        for (let [item, val] of Object.entries(person)) {
+            text += item + ": " + val + "<br>";
+        }
+        let strg = JSON.stringify(person);
+
+        // Display the Array
+        document.getElementById("demo").innerHTML = myArray;
+        document.getElementById("demo").innerHTML = text;
+        document.getElementById("demo").innerHTML = strg;
+        let circles = [
+            10, 30, 50
+        ];
+        // function circleArea(radius) {
+        //     return radius;
+        // }
+        let aream = circles.map((radius, indx, arr) => { return radius });
+        console.log(aream);
+        aream = circles.map((radius) => radius > 11);// compares the condition and return true and false
+        // aream = circles.map(radius =>  radius); //same output as above second para is optional
+        console.log(aream);
+        aream = circles.map((radius, indx) => { return indx });
+        console.log(aream);
+        aream = circles.filter((e, indx, arr) => e > 11) // compares the element value with condition and return element
+        console.log(aream);
+        aream = circles.reduce((preV, currV, indx, arr) => { return preV + currV })
+        console.log(aream);
+        let areas = []; // to store areas of circles
+        let area = 0;
+        for (let i = 0; i < circles.length; i++) {
+            areas.push(circles[i]);
+        }
+        console.log(areas);
+
+        function isInRange(value) {
+            if (typeof value !== 'number') {
+                return false;
+            }
+            return value >= this;
+        }
+
+        let data = [10, 20, "30", 1, 5, 'JavaScript filter', undefined, 'example'];
+
+        let numberInRange = data.filter(isInRange, 5);
+
+        console.log(numberInRange); // [10, 20, 5]
+        let x = '10' + 5; // x = '105'
+        x = '10' - 5    // x = 5
+        x = '10' * 5    // x = 50
+        x = '10' / 5 // x = 2
+        x = 10 % 5 // x = 0
+        x = 5 % -2 // x = 1
+        x = -5 % 2 // x = -1
+        x = -5 % -2 // x = -1
+        let energy = {
+            toString() {
+                return 50;
+            },
+        };
+        currentEnergy = energy + 100;
+        console.log(currentEnergy);
+        const mod = (dividend, divisor) => ((dividend % divisor) + divisor) % divisor;
+        x = mod(5, 2); // 1
+        x = mod(-5, 2); // 1
+        x = mod(5, -2); // -1
+        x = +x // -1
+        // y = x+   // -1 error
+        x = -x // 1
+        ++x // 2
+        --x // 1
+        x++ // 2
+        x-- // 1
+        y = x++ // 1 (first assign the value and after increment the value)
+        y = x-- // 2 (first assign the value and after decrement the value and here x value will be 1)
+        y = x < '2' // true
+        y = x < '2' // true
+        {
+            console.log(y);
+        }
+        console.log(y)
     </script>
 </body>
 
