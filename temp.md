@@ -171,3 +171,96 @@ function newGame() {
 }
 
 ```
+
+## project 5 (timeInterval) Solution
+
+```Javascript
+  let strtInterval = "";
+      const printDate = function (str) {
+        console.log(str, Date.now());
+      };
+      document.querySelector("#start").addEventListener("click", () => {
+        strtInterval = setInterval(printDate, 1000, "Hello Usman"); // continuously return the value given
+        console.log(strtInterval)
+      });
+      document.querySelector("#stop").addEventListener("click", () => {
+        clearInterval(strtInterval);
+        console.log("Time Stopped");
+      });
+      // setTimeOut is taken handler function
+      const printName = function () {
+        // console.log("Usman Ur Rehman!");
+      };
+      setTimeout(printName, 2000); // 2 secs // give fn without paranthesis which shows reference not fn
+      const chngTxt = function () {
+        document.querySelector("h1").innerHTML = "Time Interval Task";
+      };
+      const returnTxt = setTimeout(chngTxt, 2000);
+
+      //   document.querySelector("#stop").addEventListener("click", () => {
+      //     clearTimeout(returnTxt);
+      //     console.log("Stopped");
+      //   });
+
+```
+
+## project 6 (unlimited Color Changer) Solution
+
+```Javascript
+    // generate random color
+      const rncolor = function () {
+        const hex = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          rnNum = Math.floor(Math.random() * 16);
+          color += hex[rnNum];
+        //   console.log(rnNum)
+        }
+        return color;
+      };
+    //   console.log(rncolor())
+      let intervl;
+      const strtColorChng = function () {
+        if (!intervl) {
+          intervl = setInterval(chngBgColor, 1000);
+        }
+
+        function chngBgColor() {
+          document.body.style.backgroundColor = rncolor();
+        //   console.log(rncolor())
+        }
+      };
+      const stopColorChng = function () {
+        clearInterval(intervl);
+        intervl = null; // dereferencing the global variable
+      };
+      document.querySelector("#start").addEventListener("click", strtColorChng);
+      document.querySelector("#stop").addEventListener("click", stopColorChng);
+
+
+```
+
+## project 7 (pressing keys) Solution
+
+```Javascript
+const insert = document.getElementById('insert')
+      window.addEventListener('keydown',(e)=>{
+          insert.innerHTML = `
+              <div class= "color">
+                  <table>
+                        <tr>
+                        <th>key</th>
+                        <th>key Code</th>
+                        <th>Code</th>
+                        </tr>
+                        <tr>
+                        <td>${e.key === " "?'space':e.key}</td>
+                        <td>${e.keyCode}</td>
+                        <td>${e.code}</td>
+                        </tr>
+                    </table>
+              </div>
+          `;
+      })
+
+```
