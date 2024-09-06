@@ -777,3 +777,19 @@ async function getAllUsr() {
   }
 }
 getAllUsr();
+
+fetch("https://jsonplaceholder.typicode.com/users") // fetching a resource from the network, return a promise
+
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  .finally(()=>{
+    console.log('Finally, the result is either resolved or rejected');
+    
+  });
