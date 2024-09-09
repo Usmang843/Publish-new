@@ -16,14 +16,15 @@
       <button id="addColumnBtn">Generate Column</button>
       <br /><br /><button onclick="updateCell()">Update Cell</button>
     </div>
-    <table id="dynamicTable">
-      <thead>
-        <tr id="addcols"></tr>
-      </thead>
-      <tbody id="addrows"></tbody>
-    </table>
-
-    <div id="rowInputContainer"></div>
+    <br /><br />
+    <div class="container">
+      <table id="dynamicTable">
+        <thead>
+          <tr id="addcols"></tr>
+        </thead>
+        <tbody id="addrows"></tbody>
+      </table>
+    </div>
     <script>
       let columnCount = 0;
       let rowCount = 0;
@@ -45,6 +46,7 @@
             const td = document.createElement("td");
             row.appendChild(td);
           });
+          
         }
       });
 

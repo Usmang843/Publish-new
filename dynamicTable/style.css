@@ -5,17 +5,13 @@
 body{
     text-align: center;
 }
-form{
-    text-align: center;
-    align-items: center;
-}
 #logoutbtn{
     margin-right: -1;
 }
-table, th, td{
-    
+table, th, td{   
     border: 1px solid black;
 }
-#table-container{
-    text-align: center;
+.container{
+    display: flex;
+    justify-content: center;
 }
