@@ -724,7 +724,9 @@ const promise4 = new Promise(function (resolve, reject) {
 
 const usrname = promise4
   .then((usr) => {
-    // console.log(usr); // returns error because of rejection err is ture
+    // console.log(usr); // returns error because of rejection err is ture and return obj which is
+    // passed through resolve
+    // console.log(usr.name);
     return usr.name;
   })
   .then((name) => {
@@ -751,9 +753,11 @@ const promise5 = new Promise(function (resolve, reject) {
 
 async function consumedPromise5() {
   try {
+    // is working as then() which is resolved
     const response = await promise5; // promise5 is an object, async await doesn't catch error directly
     // console.log(response);
   } catch (error) {
+    // is working as catch() which is rejected
     // console.log(error);
   }
 }
@@ -766,7 +770,7 @@ async function getAllUsr() {
     // console.log(response);
 
     const data = await response.json();
-    // console.log(data);
+    console.log(data);
   } catch (error) {
     console.log("Error:", error);
   }
