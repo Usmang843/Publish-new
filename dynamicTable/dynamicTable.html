@@ -1,72 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dynamic Table</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <div>
-        <button id="addRowBtn">Generate Rows</button><br><br>
-        <div id="inputRowData"></div><br>
-        <input type="text" id="cols" name="cols">
-        <button id="addColumnBtn">Generate Column</button>
+      <button id="addRowBtn">Generate Rows</button><br /><br />
+      <div id="inputRowData"></div>
+      <br />
+      <input type="text" id="cols" name="cols" />
+      <button id="addColumnBtn">Generate Column</button>
+      <br /><br /><button onclick="updateCell()">Update Cell</button>
     </div>
     <table id="dynamicTable">
-        <thead>
-            <tr id="addcols"></tr>
-        </thead>
-        <tbody id="addrows"></tbody>
+      <thead>
+        <tr id="addcols"></tr>
+      </thead>
+      <tbody id="addrows"></tbody>
     </table>
 
     <div id="rowInputContainer"></div>
     <script>
-        let columnCount = 0;
-        let rowCount = 0;
+      let columnCount = 0;
+      let rowCount = 0;
 
-        document.getElementById('addColumnBtn').addEventListener('click', () => {
-            columnCount++;
-            const addcols = document.getElementById('addcols');
-            const th = document.createElement('th');
-            th.innerText = `Column ${columnCount}`;
-            addcols.appendChild(th);
+      document.getElementById("addColumnBtn").addEventListener("click", () => {
+        const addcols = document.getElementById("addcols");
+        const addcolsV = document.getElementById("cols").value;
+        if (!addcolsV) {
+          alert("Plese enter Column name");
+        } else {
+          columnCount++;
+          const th = document.createElement("th");
+          th.innerText = addcolsV;
+          addcols.appendChild(th);
 
-            const addrows = document.getElementById('addrows');
-            const rows = addrows.querySelectorAll('tr');
+          const addrows = document.getElementById("addrows");
+          const rows = addrows.querySelectorAll("tr");
+          rows.forEach((row) => {
+            const td = document.createElement("td");
+            row.appendChild(td);
+          });
+        }
+      });
 
-            rows.forEach(row => {
-                const td = document.createElement('td');
-                row.appendChild(td);
-            });
+      document.getElementById("addRowBtn").addEventListener("click", () => {
+        const chkC = document.querySelector("thead tr").hasChildNodes();
+        if (chkC === false) {
+          alert("Please generate Column first");
+        } else {
+          const addrows = document.getElementById("addrows");
+          const inputRowData = document.getElementById("inputRowData");
+          inputRowData.innerHTML += `<div>
+            <input type = 'text' id="${rowCount}"></input>
+            <button type = 'button' onclick='inputData(${rowCount})'>Submit</button><br><br></div>
+        `;
+          const rowV = document.getElementById(rowCount).value;
+          if (rowV === "") {
+            alert("Please Enter the Row data and submit");
+          }
+          rowCount++;
+          const tr = document.createElement("tr");
+          for (let i = 0; i < columnCount; i++) {
+            const td = document.createElement("td");
+
+            td.innerText = " ";
+            tr.appendChild(td);
+          }
+          addrows.appendChild(tr);
+        }
+      });
+
+      function inputData(rowCount) {
+        const row = document.querySelectorAll("tbody tr")[rowCount];
+        const col = row.querySelectorAll("td");
+        col.forEach((c) => {
+          c.textContent = document.getElementById(rowCount).value;
         });
+        const chkV = document.getElementById(rowCount);
+        if (chkV.value === "") {
+          alert("Please enter the Row value and submit");
+        } else {
+          const createdElemnt = document.getElementById(
+            `${rowCount}`
+          ).parentNode;
+          createdElemnt.remove();
+        }
+      }
 
-        document.getElementById('addRowBtn').addEventListener('click', () => {
-            rowCount++;
-            const addrows = document.getElementById('addrows');
-
-            const inputRowData = document.getElementById('inputRowData');
-
-            const tr = document.createElement('tr');
-            for (let i = 0; i < columnCount; i++) {
-                const td = document.createElement('td');
-
-                const addrowdata = document.createElement('input');
-                addrowdata.type  = "text"
-                
-                inputRowData.appendChild(addrowdata);
-
-                td.innerText = `Row ${rowCount}`
-                tr.appendChild(td);
-            }
-            addrows.appendChild(tr);
-        });
-
-    
+      function updateCell() {
+        const chkCell = document.querySelector("tbody").hasChildNodes();
+        if (!chkCell) {
+          alert("Please first enter data in table ");
+        } else {
+          const getRows = document.querySelectorAll("tbody tr");
+          const getColmns = getRows[0].querySelectorAll("td").length;
+          let rowsI = "( ",
+            colsI = "( ";
+          for (let i = 0; i < getRows.length; i++) {
+            rowsI += i + ",";
+          }
+          for (let i = 0; i < getColmns; i++) {
+            colsI += i + ",";
+          }
+          rowsI += ")";
+          colsI += ")";
+          rn = window.prompt(`Input the Row Number ${rowsI}`, 0);
+          cn = window.prompt(`Input the Column Number ${colsI}`, 0);
+          content = window.prompt("Input the Cell content");
+          const rows = document.querySelectorAll("tbody tr");
+          const cells = rows[Number(rn)].querySelectorAll("td");
+          cells[cn].textContent = content;
+        }
+      }
     </script>
-
-</body>
-
+  </body>
 </html>

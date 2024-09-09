@@ -23,4 +23,4 @@ for (let narr of arr) {
         tarr.push([narr[0], narr[1], inarr, narr[3]]);
     }
 }
-console.log(tarr)
+console.log(tarr);
