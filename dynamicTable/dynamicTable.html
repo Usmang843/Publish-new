@@ -103,19 +103,28 @@
           let rowsI = "( ",
             colsI = "( ";
           for (let i = 0; i < getRows.length; i++) {
-            rowsI += i + ",";
+            if (i == getRows.length - 1) {
+              rowsI += i;
+            } else {
+              rowsI += i + ",";
+            }
           }
           for (let i = 0; i < getColmns; i++) {
-            colsI += i + ",";
+            if (i == getColmns - 1) {
+              colsI += i;
+            } else {
+              colsI += i + ",";
+            }
           }
-          rowsI += ")";
-          colsI += ")";
+          rowsI += " )";
+          colsI += " )";
+          console.log(colsI, rowsI, "===============");
           rn = window.prompt(`Input the Row Number ${rowsI}`, 0);
           cn = window.prompt(`Input the Column Number ${colsI}`, 0);
           content = window.prompt("Input the Cell content");
           const rows = document.querySelectorAll("tbody tr");
           const cells = rows[Number(rn)].querySelectorAll("td");
-          console.log(cells)
+          console.log(cells);
           cells[cn].textContent = content;
         }
       }
