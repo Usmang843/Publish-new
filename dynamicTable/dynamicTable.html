@@ -46,7 +46,6 @@
             const td = document.createElement("td");
             row.appendChild(td);
           });
-          
         }
       });
 
@@ -116,6 +115,7 @@
           content = window.prompt("Input the Cell content");
           const rows = document.querySelectorAll("tbody tr");
           const cells = rows[Number(rn)].querySelectorAll("td");
+          console.log(cells)
           cells[cn].textContent = content;
         }
       }
