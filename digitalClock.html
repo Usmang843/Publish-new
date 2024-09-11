@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      .container{
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        color: #17D4FE;
+        font-size: 60px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="myClock">Generate Clock</div>
+    <script>
+      document.getElementById('myClock').addEventListener('click',function setTimer(){
+        var date = new Date();
+        var h = date.getHours(),
+          m = date.getMinutes(),
+          s = date.getSeconds(),
+          session = 'AM';
+        if (h == 0) {
+          h = 12;
+        }
+        if (h > 12) {
+          h = h - 1;
+          session = "PM";
+        }
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+
+        var time = h + ':' + m + ':' + s + ':' + session;
+        document.getElementById('myClock').innerHTML = time;
+
+        setTimeout(setTimer, 1000);
+      })
+    </script>
+  </body>
+</html>
