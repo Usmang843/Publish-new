@@ -24,7 +24,24 @@ const Comments = () => {
              Not set the value by setName(prompt('What is your name?')); -> const name =prompt('What is your name?') simple js
              During the initial render, React will create the DOM nodes for <section>, <h1>, and three <img> tags.
             During a re-render, React will calculate which of their properties, 
-            if any, have changed since the previous render. It won’t do anything with that information until the next step, the commit phase. 
+            if any, have changed since the previous render. It won’t do anything with that information until the next step, the commit phase.
+            React only changes the DOM nodes if there’s a difference between renders. 
+            Conditional (ternary) operator (condition? true:false)
+            Logical AND operator (&&)  (condition && true)
+            React considers false as a “hole” in the JSX tree, just like null or undefined, and doesn’t render anything in its place.
+            This process is known as reconciliation, and it is an important aspect of how React works. 
+            By using a declarative approach and a VDOM, React is able to optimize the rendering of components and improve the performance of web applications.
+            Arrow functions implicitly return the expression right after =>, so you didn’t need a return statement:
+            you must write return explicitly if your => is followed by a { curly brace!
+            (...objectName) is a syntax shortcut saying “pass all properties of the object as props to the component”   
+            React elements are plain objects, and are cheap to create.
+            “Rendering” means that React is calling your component, which is a function. 
+            The JSX you return from that function is like a snapshot of the UI in time.
+            Its props, event handlers, and local variables were all calculated using its state at the time of the render.
+            React executing the function -> Calculating the snapshot -> Updating the DOM tree
+            When React calls your component, it gives you a snapshot of the state for that particular render.
+            You tell React to update the state -> React updates the state value -> React passes a snapshot of the state value into the component
+
          */}
     </div>
   );
