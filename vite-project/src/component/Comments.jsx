@@ -41,8 +41,20 @@ const Comments = () => {
             React executing the function -> Calculating the snapshot -> Updating the DOM tree
             When React calls your component, it gives you a snapshot of the state for that particular render.
             You tell React to update the state -> React updates the state value -> React passes a snapshot of the state value into the component
-
-         */}
+            React keeps the state values “fixed” within one render’s event handlers. You don’t need to worry whether the state has changed while the code is running.
+            React stores state outside of your component, as if on a shelf.
+            Every render (and functions inside it) will always “see” the snapshot of the state that React gave to that render.
+            pure function -> It minds its own business. It does not change any objects or variables that existed before it was called.
+            Same inputs, same output. Given the same inputs, a pure function should always return the same result.
+            React assumes that every component you write is a pure function.
+            React’s rendering process must always be pure. 
+            Components should only return their JSX, and not change any objects or variables that existed before rendering—that would make them impure!        
+             it’s completely fine to change variables and objects that you’ve just created while rendering.
+             the problem was that the component changed a preexisting variable while rendering. This is often called a “mutation” 
+            side effects usually belong inside event handlers.
+            These changes—updating the screen, starting an animation, changing the data—are called side effects,  They’re things that happen “on the side”, not during rendering.
+            
+        */}
     </div>
   );
 };
