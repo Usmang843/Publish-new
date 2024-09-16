@@ -62,6 +62,10 @@ const Comments = () => {
             The state of a class component is available as this.state.
             The state field must be an object. Do not mutate the state directly. If you wish to change the state, call setState with the new state.
             The constructor runs before your class component mounts (gets added to the screen) -- constructor should not return anything.
+             componentDidMount method, React will call it when your component is added (mounted) to the screen.
+             This is a common place to start data fetching, set up subscriptions, or manipulate the DOM nodes. 
+            if componentDidMount reads some state or props, you also have to implement componentDidUpdate to handle their changes,
+             and componentWillUnmount to clean up whatever componentDidMount was doing.
             
 
     */}
