@@ -116,3 +116,7 @@ div.equal:hover {
 div.equal:active {
   font-weight: bold;
 }
+.header-class{
+  font-weight: bold;
+  font-size: larger;
+}

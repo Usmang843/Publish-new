@@ -64,3 +64,8 @@ button:focus-visible {
     background-color: #e7b6b6;
   }
 }
+.header-class{
+  font-weight: bold;
+  font-size: larger;
+  margin-left: 100px;
+}
