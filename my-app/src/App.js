@@ -37,7 +37,9 @@ const App = () => {
   const handleResultClick = () => {
     if (input.length === 0) {
       alert("Enter a number first");
-    } else {
+    }
+    
+    else {
       const numbers = input.split(/\+|\-|\×|\÷/g);
       const operators = input.replace(/[0-9]|\./g, "").split("");
 
@@ -66,6 +68,7 @@ const App = () => {
       setResultDisplayed(true);
     }
   };
+
   const handleClear = () => {
     setInput("");
   };
@@ -73,7 +76,6 @@ const App = () => {
   return (
     <>
       <Header />
-
       <div className="calculator">
         <div className="input">{input}</div>
         <div className="buttons">
@@ -102,12 +104,12 @@ const App = () => {
             <div className="numbers">
               <div onClick={handleNumberClick}>0</div>
               <div onClick={handleNumberClick}>.</div>
-              <div id="clear" onClick={handleClear}>
+              <div onClick={handleClear}>
                 C
               </div>
             </div>
           </div>
-          <div className="equal" id="result" onClick={handleResultClick} >
+          <div className="equal" onClick={handleResultClick} >
             =
           </div>
         </div>

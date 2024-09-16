@@ -53,8 +53,18 @@ const Comments = () => {
              the problem was that the component changed a preexisting variable while rendering. This is often called a “mutation” 
             side effects usually belong inside event handlers.
             These changes—updating the screen, starting an animation, changing the data—are called side effects,  They’re things that happen “on the side”, not during rendering.
+            Component is the base class for the React components defined as JavaScript classes. 
+            Class components are still supported by React, but we don’t recommend using them in new code.
+            useContext, useState, 
+            The context of a class component is available as this.context
+            Reading this.context in class components is equivalent to useContext in function components.
+            The props passed to a class component are available as this.props.
+            The state of a class component is available as this.state.
+            The state field must be an object. Do not mutate the state directly. If you wish to change the state, call setState with the new state.
+            The constructor runs before your class component mounts (gets added to the screen) -- constructor should not return anything.
             
-        */}
+
+    */}
     </div>
   );
 };
