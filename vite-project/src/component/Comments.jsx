@@ -66,6 +66,13 @@ const Comments = () => {
              This is a common place to start data fetching, set up subscriptions, or manipulate the DOM nodes. 
             if componentDidMount reads some state or props, you also have to implement componentDidUpdate to handle their changes,
              and componentWillUnmount to clean up whatever componentDidMount was doing.
+            cmponentDidUpdate method, React will call it immediately after your component has been re-rendered with updated props or state.  
+            This method is not called for the initial render.
+            common place to do network requests as long as you compare the current props to previous props 
+            if your component’s render method reads directly from an external data source, you have to tell React to update the user interface when that data source changes.
+             That’s what forceUpdate lets you do.
+            // The render method is the only required method in a class component. The render method should specify what you want to appear on the screen,
+            Every time after your component re-renders with a different value, your Effect will re-synchronize. 
             
 
     */}

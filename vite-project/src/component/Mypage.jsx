@@ -22,7 +22,6 @@ import { useState } from "react"; // calling Hook
 import { createContext, useContext } from "react";
 
 export default function myApp() {
-  
   let flag;
   const user = {
     name: "Usman Ur Rehman",
@@ -33,16 +32,20 @@ export default function myApp() {
   if (user.name == "usman") {
     flag = <>(Wrong Name)</>;
   } else {
-    flag = <p></p>;
+    flag = <span></span>;
   }
   const [name, setName] = useState([
     { fname: "usman", isAlive: false, id: 1 },
-    { fname: "ur", isAlive: false, id: 2 },
-    { fname: "rehman", isAlive: true, id: 3 },
+    { mname: "ur", isAlive: false, id: 2 },
+    { lname: "rehman", isAlive: true, id: 3 },
   ]);
+
   const [count, setCount] = useState(0);
   function MyButton() {
     setCount(count + 1);
+  }
+  function DisplayName() {
+    return <h1>Hello Usman!</h1>;
   }
 
   return (
@@ -52,13 +55,13 @@ export default function myApp() {
       and pass information by {}
       */}
       <div className="container">
-        <p className="title">
+        <span className="title">
           <h1>
             {user.name}
             {flag} {/* simle if condtion */}
             {user.age == 24 ? <>Wrong Age</> : <></>}{" "}
             {/* ? condtion operator */}
-            {user.age == 24 && <>{name[0].fname}</>} {/* ? condtion operator */}
+            {user.age == 24 && <>{name[0].lname}</>} {/* ? condtion operator */}
             {user.imageSize == 160 && <>Wrong image address</>}{" "}
             {/* &&  operator when you don't need the else branch */}
           </h1>
@@ -68,13 +71,10 @@ export default function myApp() {
             height={user.imageSize}
             width={user.imageSize}
           ></img>
-        </p>
+        </span>
         <h2 className="chngColor">Welcome to My app</h2>
         <button onClick={MyButton}>Clicked {count} times</button>
       </div>
     </>
   );
-}
-function DisplayName() {
-  return <h1>Hello Usman!</h1>;
 }
