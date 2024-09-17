@@ -5,6 +5,7 @@ const ReactL = () => {
     <>
     {/* first install node
         npm create vite@latest -> npm install -> npm run dev
+        
     */}
     </>
   );
