@@ -3,7 +3,7 @@
 }
 .container{
   text-align: center;
-  margin-inline-start: 700px;
+  /* margin-inline-start: 700px; */
 }
 .chngColor{
   color: aqua;
