@@ -90,6 +90,9 @@ const Comments = () => {
             This value is intentionally mutable, meaning you can both read and write to it. It’s like a secret pocket of your component that React doesn’t track. 
             Unlike state, ref is a plain JavaScript object with the current property that you can read and modify.
             This is why reading ref.current during render leads to unreliable code. If you need that, use state instead.
+            e.stopPropagation() stops the event handlers attached to the tags above from firing.
+            e.preventDefault() prevents the default browser behavior for the few events that have it.
+            Event handlers will receive a React event object. It is also sometimes known as a “synthetic event”.
             
     */}
     </div>
