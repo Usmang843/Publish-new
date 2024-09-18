@@ -93,7 +93,7 @@ const Comments = () => {
             e.stopPropagation() stops the event handlers attached to the tags above from firing.
             e.preventDefault() prevents the default browser behavior for the few events that have it.
             Event handlers will receive a React event object. It is also sometimes known as a “synthetic event”.
-            
+            Hooks - Hooks for web applications which run in the browser DOM environment.
     */}
     </div>
   );
