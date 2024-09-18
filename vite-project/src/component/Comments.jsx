@@ -93,7 +93,27 @@ const Comments = () => {
             e.stopPropagation() stops the event handlers attached to the tags above from firing.
             e.preventDefault() prevents the default browser behavior for the few events that have it.
             Event handlers will receive a React event object. It is also sometimes known as a “synthetic event”.
-            Hooks - Hooks for web applications which run in the browser DOM environment.
+            Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.
+            useState is a React Hook that lets you add a state variable to your componen
+              set function only updates the state variable for the next render,
+              If you read the state variable after calling the set function, you will still get the old value that was on the screen before your call
+              If the new value you provide is identical to the current state, as determined by an Object.is comparison,
+              React will skip re-rendering the component and its children. React batches state updates.  
+              Calling the set function does not change the current state in the already executing code:
+              setAge(age + 1); // setAge(42 + 1) ,   setAge(age + 1); // setAge(42 + 1) , setAge(age + 1); // setAge(42 + 1)
+              To solve this problem pass an updater function
+              setAge(a => a + 1); // setAge(42 => 43) , setAge(a => a + 1); // setAge(43 => 44) , setAge(a => a + 1); // setAge(44 => 45)
+              In React, state is considered read-only, so you should replace it rather than mutate your existing objects
+              If you want to reset the entire component tree’s state, pass a different key to your component.
+              Only component, initializer, and updater functions need to be pure. 
+              Event handlers don’t need to be pure, so React will never call your event handlers twice.
+            UseEffect is a React Hook that lets you synchronize a component with an external system.
+              useEffect(setup, dependencies?)
+              If your Effect is caused by an interaction (like a click), React may run your Effect before the browser paints the updated screen.
+              If your Effect wasn’t caused by an interaction (like a click), React will generally let the browser paint the updated screen first before running your Effect. 
+              If you’re not connecting to any external system, you probably don’t need an Effect.
+              
+
     */}
     </div>
   );
