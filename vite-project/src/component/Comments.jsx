@@ -73,8 +73,24 @@ const Comments = () => {
              That’s what forceUpdate lets you do.
             // The render method is the only required method in a class component. The render method should specify what you want to appear on the screen,
             Every time after your component re-renders with a different value, your Effect will re-synchronize. 
+            The main reason your Effect will re-synchronize in practice is if some data it uses has changed. 
+             React knew that your Effect needed to re-synchronize after value changes. 
+             It’s because you told React that its code depends on value by including it in the list of dependencies:
+            if your component re-renders but value has not changed, your Effect will remain connected to the same value
+            Each Effect in your code should represent a separate and independent synchronization process.
+            Thinking from the component’s perspective, the empty [] dependency array means
+            this Effect connects  only when the component mounts, and disconnects only when the component unmounts.
+            Think from the Effect’s perspective, you don’t need to think about mounting and unmounting at all.
+            What’s important is you’ve specified what your Effect does to start and stop synchronizing.
+            All values inside the component (including props, state, and variables in your component’s body) are reactive.
+            Any reactive value can change on a re-render, so you need to include reactive values as Effect’s dependencies.
+            When you write and read Effects, think from each individual Effect’s perspective (how to start and stop synchronization) 
+            rather than from the component’s perspective (how it mounts, updates, or unmounts).
+            You can access the current value of that ref through the ref.current property. 
+            This value is intentionally mutable, meaning you can both read and write to it. It’s like a secret pocket of your component that React doesn’t track. 
+            Unlike state, ref is a plain JavaScript object with the current property that you can read and modify.
+            This is why reading ref.current during render leads to unreliable code. If you need that, use state instead.
             
-
     */}
     </div>
   );
