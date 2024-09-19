@@ -112,7 +112,23 @@ const Comments = () => {
               If your Effect is caused by an interaction (like a click), React may run your Effect before the browser paints the updated screen.
               If your Effect wasn’t caused by an interaction (like a click), React will generally let the browser paint the updated screen first before running your Effect. 
               If you’re not connecting to any external system, you probably don’t need an Effect.
+              If your Effect’s code doesn’t use any reactive values, its dependency list should be empty ([]):
+              Avoid using an object created during rendering as a dependency. Instead, create the object inside the Effect:
+              No dependency array: re-runs after every render!
+              If your Effect must block the browser from painting the screen, replace useEffect with useLayoutEffect. 
+            useCallback is a React Hook that lets you cache a function definition between re-renders.
+              React will not call your function. The function is returned to you so you can decide when and whether to call it.
+              If none of the dependencies have changed (compared with Object.is), useCallback will return the same function as before.
+              Otherwise, useCallback will return the function you passed on this render.
+              Returns a new function every time: no dependency array, 
+            UseRef is a React Hook that lets you reference a value that’s not needed for rendering
+              React is not aware of when you change it because a ref is a plain JavaScript object.Changing a ref does not trigger a re-render.
+              To update the value inside the ref, you need to manually change its current property
               
+
+
+
+
 
     */}
     </div>
