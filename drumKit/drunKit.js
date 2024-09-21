@@ -34,7 +34,7 @@
 		}
 
 		keyElement.classList.add(playingClass);
-	};
+	};	
 
 	const removeCrashRideTransition = e => {
 		if(e.propertyName !== 'transform') return;
