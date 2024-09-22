@@ -21,5 +21,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logut } = authSlice.actions; // actions means methods in reducer
+export const { login, logout } = authSlice.actions; // actions means methods in reducer
 export default authSlice.reducer;

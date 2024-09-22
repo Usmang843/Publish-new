@@ -1,4 +1,4 @@
-
+import React from 'react'
 
 const Comments = () => {
   return (
@@ -10,7 +10,6 @@ const Comments = () => {
         -- Authentication Service
         -- conf major configuration file of appWrite
         */}
-      
     </div>
   )
 }
