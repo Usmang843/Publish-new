@@ -124,6 +124,42 @@ const Comments = () => {
             UseRef is a React Hook that lets you reference a value that’s not needed for rendering
               React is not aware of when you change it because a ref is a plain JavaScript object.Changing a ref does not trigger a re-render.
               To update the value inside the ref, you need to manually change its current property
+              Do not write or read ref.current during rendering, You can read or write refs from event handlers or effects instead.
+              If you have to read or write something during rendering, use state instead.
+            useReducer is a React Hook that lets you add a reducer to your component.
+              const [state, dispatch] = useReducer(reducer, initialArg, init?)
+              The current state. During the first render, it’s set to init(initialArg) or initialArg (if there’s no init).
+              The dispatch function that lets you update the state to a different value and trigger a re-render.
+              Don't mutate an object in state, always return new objects from your reducer:
+              Calling the dispatch function does not change state in the running code
+            useMemo is a React Hook that lets you cache the result of a calculation between re-renders.
+              const cachedValue = useMemo(calculateValue, dependencies)
+              React will return the same value again if the dependencies have not changed since the last render. 
+              Otherwise, it will call calculateValue, return its result, and store it so it can be reused later.
+              Caching return values like this is also known as memoization, which is why this Hook is called useMemo.
+              By default, when a component re-renders, React re-renders all of its children recursively.
+              Memoizing functions is common enough that React has a built-in Hook specifically for that.
+              Wrap your functions into useCallback instead of useMemo to avoid having to write an extra nested function:
+              Recalculates every time: no dependency array, you can't call useMemo in loop
+            useContext is a React Hook that lets you read and subscribe to context from your component.
+              const value = useContext(SomeContext)
+              context value, React searches the component tree and finds the closest context provider above for that particular context.
+            Hook names must start with use followed by a capital letter, like useState (built-in) or (custom, like earlier on the page). 
+              Hooks may return arbitrary values.
+              Custom Hooks let you share stateful logic but not state itself. 
+              Each call to a Hook is completely independent from every other call to the same Hook
+              React 18 includes a dedicated API called useSyncExternalStore which takes care of all problems for you
+              Do not call Hooks inside conditions or loops, after a conditional return statement.
+              Do not call Hooks in event handlers,  in class components,  inside functions passed to useMemo, useReducer, or useEffect, inside try/catch/finally blocks.
+            React Router  
+              The useRoutes allows us to define the routes as an array of objects in which we can specify a path, the element
+              to be rendered when the path is browsed, and sub-paths. 
+              Outlet helps us render the child route that matches the current path.
+              useHistory() for handling navigation programmatically ->such as naming confusion and having two methods for navigation, history.push and history.replace
+              NavLink component interface that helps you create breadcrumbs, tabs, and navigation menus with dynamic styles.
+              use a function with the destructured argument {isActive} to condition the style or className to be used for an active NavLink
+              useRouteMatch was used to create relative sub-route paths that matched a particular route. We can use this Hook with or without the pattern argument
+              useMatch Hook requires a pattern argument and does not accept patterns as an array
               
 
 

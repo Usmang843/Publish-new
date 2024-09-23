@@ -8,6 +8,7 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Github from "./components/Github/Github";
 import User from "./components/User/User";
+import Login from "./components/Login/Login";
 
 // can create route many ways there are two ways to create roots
 // const router = createBrowserRouter([
@@ -43,6 +44,7 @@ const router = createBrowserRouter(
     <Route path="Contact" element={<Contact />} />
     <Route  path="Github" element={<Github />} /> {/**  loader={githubInfoLoader} */}
     <Route path="User/:userId" element={<User />} />
+    <Route path="login" element={<Login />} />
   </Route>
   )
 );
