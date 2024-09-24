@@ -1,0 +1,131 @@
+import React, { useState } from 'react';
+
+const Login = ({ onSwitch }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem('user', JSON.stringify({ email }));
+    alert('Logged in!');
+  };
+
+  return (
+    <div className="flex flex-col items-center">
+      <h2 className="text-2xl mb-4">Login</h2>
+      <form className="bg-white p-6 rounded shadow-md w-80" onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="border p-2 mb-4 w-full"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="border p-2 mb-4 w-full"
+          required
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full">
+          Login
+        </button>
+        <button type="button" onClick={onSwitch} className="mt-4 text-blue-500">
+          Create an account
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
+
+
+import React, { useState } from 'react';
+
+const Signup = ({ onSwitch }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem('user', JSON.stringify({ email }));
+    alert('Signed up!');
+  };
+
+  return (
+    <div className="flex flex-col items-center">
+      <h2 className="text-2xl mb-4">Signup</h2>
+      <form className="bg-white p-6 rounded shadow-md w-80" onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="border p-2 mb-4 w-full"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="border p-2 mb-4 w-full"
+          required
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full">
+          Signup
+        </button>
+        <button type="button" onClick={onSwitch} className="mt-4 text-blue-500">
+          Already have an account?
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Signup;
+
+
+import React, { useState } from 'react';
+import Login from './Login';
+import Signup from './Signup';
+
+const App = () => {
+  const [isLogin, setIsLogin] = useState(true);
+
+  const switchMode = () => {
+    setIsLogin((prev) => !prev);
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      {isLogin ? <Login onSwitch={switchMode} /> : <Signup onSwitch={switchMode} />}
+    </div>
+  );
+};
+
+export default App;
+
+
+import React from 'react';
+
+const Item = ({ item, onAddToCart }) => {
+  return (
+    <div className="border p-4 rounded shadow-md">
+      <h3 className="text-lg font-bold">{item.name}</h3>
+      <p className="text-gray-700">${item.price}</p>
+      <button 
+        className="bg-blue-500 text-white p-2 rounded mt-4"
+        onClick={() => onAddToCart(item)}
+      >
+        Add to Cart
+      </button>
+    </div>
+  );
+};
+
+export default Item;

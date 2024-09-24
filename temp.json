@@ -1,0 +1,64 @@
+
+{
+    "products": []
+  }
+  
+
+npx create-react-app daraz-scraper
+cd daraz-scraper
+npm start
+
+
+npm install axios
+
+
+/import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const App = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://www.daraz.pk'); // This may need to be an API endpoint
+        // Parse the response to extract product information
+        // The structure below is a placeholder. Update based on actual data structure from Daraz.
+        const productsArray = []; // Update with parsed data from response
+        setProducts(productsArray);
+
+        // Save to JSON file or localStorage
+        const jsonData = JSON.stringify({ products: productsArray });
+        localStorage.setItem('main_content', jsonData); // Storing in localStorage
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Products</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <h2>{product.name}</h2>
+            <p>Price: {product.price}</p>
+            <p>Rating: {product.rating}</p>
+            <img src={product.image} alt={product.name} />
+            <a href={product.url}>View Product</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+
+
+
+
+npm start

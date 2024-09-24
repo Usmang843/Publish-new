@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Category1",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/5a6b9ca176630ead6653eb10ae564a68.jpg_200x200q80.jpg_.webp"
+  },
+  {
+    "id": 2,
+    "title": "Category2",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/660d73036c4d1eafd3f0f5a83b7ee87f.jpg_200x200q80.jpg_.webp"
+  },
+  {
+    "id": 3,
+    "title": "Category3",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/70988436f3b4f938491f343e4289672e.jpg_200x200q80.jpg_.webp"
+  },
+  {
+    "id": 4,
+    "title": "Category4",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/52ad856fd63354432d39581c9c4cac6e.jpg_80x80q80.jpg_.webp"
+  },
+  {
+    "id": 5,
+    "title": "Category5",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/426b922f586bf12cba53acb608f6b38f.jpg_80x80q80.jpg_.webp"
+  },
+  {
+    "id": 6,
+    "title": "Category6",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/63670ac0a75cdb47a77731aecf3ef2e0.jpg_80x80q80.jpg_.webp"
+  },
+  {
+    "id": 7,
+    "title": "Category7",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/be89b93cabc171cefa64b476d6219280.png_200x200q80.png_.webp"
+  },
+  {
+    "id": 8,
+    "title": "Category8",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/619cb9366e65bcc2f7884e5c27b05cbc.jpg_200x200q80.jpg_.webp"
+  }
+]

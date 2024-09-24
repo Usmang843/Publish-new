@@ -13,6 +13,10 @@ import Home from "./Components/Home/Home.jsx";
 import Login from "./Components/Login/Login.jsx";
 import SignUp from "./Components/SignUp/SignUp.jsx";
 import Search from "./Components/Search/Search.jsx";
+import AddCart from "./Components/AddCart/AddCart.jsx";
+import Category from "./Components/Category/Category.jsx";
+import Cart from "./Components/Cart/Cart.jsx";
+import Checkout from "./Components/Checkout/Checkout.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +25,11 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="search" element={<Search />} />
+      <Route path="cart" element={<Cart />} />
+      <Route path="addToCart/:id" element={<AddCart />} />
+      <Route path="category/:title" element={<Category />} />
+      <Route path='/checkout' element={<Checkout />} />
+
     </Route>
   )
 );

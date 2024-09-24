@@ -1,0 +1,171 @@
+[
+  {
+    "id": 1,
+    "title": "Product 1",
+    "Category": "Category1",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/bd6c500a6a3b2198e34d7bf2381cf7dd.jpg_200x200q80.jpg_.webp",
+    "price": 100
+  },
+  {
+    "id": 2,
+    "title": "Product 2",
+    "Category": "Category1",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/e722879f290537184d7c6c2ce46e4715.png_200x200q80.png_.webp",
+    "price": 700
+  },
+  {
+    "id": 3,
+    "title": "Product 3",
+    "Category": "Category1",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/da6bf139f68942be1b7c84f8ecc5d98b.png_200x200q80.png_.webp",
+    "price": 600
+  },
+  {
+    "id": 4,
+    "title": "Product 4",
+    "Category": "Category2",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/d6bdf7f9523c1639a35c49e847d2a6b6.jpg_200x200q80.jpg_.webp",
+    "price": 300
+  },
+  {
+    "id": 5,
+    "title": "Product 5",
+    "Category": "Category2",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/798f579233d04d9200996b915aea1886.jpg_200x200q80.jpg_.webp",
+    "price": 400
+  },
+  {
+    "id": 6,
+    "title": "Product 6",
+    "Category": "Category2",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/9b3cbdf9afb18c0c50ab38cd78c695bf.jpg_200x200q80.jpg_.webp",
+    "price": 900
+  },
+  
+  {
+    "id": 7,
+    "title": "Product 7",
+    "Category": "Category3",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/90238f131195096ae8aaad774de4345b.jpg_200x200q80.jpg_.webp",
+    "price": 800
+  },
+  {
+    "id": 8,
+    "title": "Product 8",
+    "Category": "Category3",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/2418a0db3ddae75924cd02d813214eac.png_200x200q80.png_.webp",
+    "price": 1000
+  },
+  {
+    "id": 9,
+    "title": "Product 9",
+    "Category": "Category3",
+    "image": "https://img.drz.lazcdn.com/g/kf/S98c30638b5b34ed4a383d542ec62eae9w.jpg_200x200q80.jpg_.webp",
+    "price": 1400
+  },
+  {
+    "id": 10,
+    "title": "Product 10",
+    "Category": "Category4",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/74717672e8fefbd7750f183762f5b710.jpg_200x200q80.jpg_.webp",
+    "price": 1200
+  },
+  {
+    "id": 11,
+    "title": "Product 11",
+    "Category": "Category4",
+    "image": "https://img.drz.lazcdn.com/g/kf/S9aa12a807d76494c808c8d416186bb27f.jpg_200x200q80.jpg_.webp",
+    "price": 1400
+  },
+  {
+    "id": 12,
+    "title": "Product 12",
+    "Category": "Category4",
+    "image": "https://img.drz.lazcdn.com/g/kf/S60dbdc59790449069cbdb3f5a3776938e.jpg_200x200q80.jpg_.webp",
+    "price": 2300
+  },
+  {
+    "id": 13,
+    "title": "Product 13",
+    "Category": "Category5",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/a9a578009cc51b724ac57d9976217aeb.jpg_200x200q80.jpg_.webp",
+    "price": 1600
+  },
+  {
+    "id": 14,
+    "title": "Product 14",
+    "Category": "Category5",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/181ec42c70320ebb65b7dbf1d41e4297.jpg_200x200q80.jpg_.webp",
+    "price": 1800
+  },
+  {
+    "id": 15,
+    "title": "Product 15",
+    "Category": "Category5",
+    "image": "https://img.drz.lazcdn.com/g/kf/Sba36fefb1ad3448fa44dd9c696ef2f9fz.jpg_200x200q80.jpg_.webp",
+    "price": 2800
+  },
+  {
+    "id": 16,
+    "title": "Product 16",
+    "Category": "Category6",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/982f21a3b3b1ac150694c6f7ff74de96.jpg_200x200q80.jpg_.webp",
+    "price": 2000
+  },
+  {
+    "id": 17,
+    "title": "Product 17",
+    "Category": "Category6",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/a3356720dd31f976eb6add6a74b4b456.jpg_200x200q80.jpg_.webp",
+    "price": 2200
+  },
+  {
+    "id": 18,
+    "title": "Product 18",
+    "Category": "Category6",
+    "image": "https://img.drz.lazcdn.com/g/kf/S4564d3174dbd4a1682ad883190d87ff3Q.jpg_200x200q80.jpg_.webp",
+    "price": 4200
+  },  
+  {
+    "id": 19,
+    "title": "Product 19",
+    "Category": "Category7",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/d980773fb162923f012e4f26d068dbab.jpg_200x200q80.jpg_.webp",
+    "price": 2400
+  },
+  {
+    "id": 20,
+    "title": "Product 20",
+    "Category": "Category7",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/22c245de9f4d0c8b2074591f560ffa13.jpg_200x200q80.jpg_.webp",
+    "price": 2600
+  },
+  {
+    "id": 21,
+    "title": "Product 21",
+    "Category": "Category7",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/990f5c4d2351b57e020ff5867eafdc7e.jpg_200x200q80.jpg_.webp",
+    "price": 1600
+  },  
+  {
+    "id": 22,
+    "title": "Product 22",
+    "Category": "Category8",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/540f218165f2c1f8bf2e3463cdc4dabe.png_200x200q80.png_.webp",
+    "price": 2800
+  },
+  {
+    "id": 23,
+    "title": "Product 23",
+    "Category": "Category8",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/9dfcf5e0c04aced72359ea322d725765.jpg_200x200q80.jpg_.webp",
+    "price": 3000
+  },
+  {
+    "id": 24,
+    "title": "Product 24",
+    "Category": "Category8",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/3e8a26d1c0e6dcc1631295845582820a.jpg_200x200q80.jpg_.webp",
+    "price": 1000
+  }
+]
