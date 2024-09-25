@@ -1,7 +1,16 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const Dropdown = () => {
   const [isMultiDropdownOpen, setMultiDropdownOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("/categories.json")
+      .then((response) => response.json())
+      .then((data) => setCategories(data));
+  }, []);
 
   const handleMouseOver = () => {
     setMultiDropdownOpen(true);
@@ -18,9 +27,9 @@ const Dropdown = () => {
     >
       <button
         onMouseOver={handleMouseOver} // Open dropdown on mouse over
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
+        className="text-black font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
       >
-        Dropdown button
+        Categories
         <svg
           className="w-2.5 h-2.5 ms-3"
           aria-hidden="true"
@@ -41,14 +50,16 @@ const Dropdown = () => {
       {isMultiDropdownOpen && (
         <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
           <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Dashboard
-              </a>
-            </li>
+            {categories.map((categories) => (
+              <li key={categories.id}>
+                <Link
+                  to={`/category/${categories.title}`}
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  {categories.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}
