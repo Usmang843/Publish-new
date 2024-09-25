@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SignUp = ({ onSwitch }) => {
   const [fname, setFname] = useState("");
@@ -14,7 +15,9 @@ const SignUp = ({ onSwitch }) => {
     const userData = JSON.parse(sessionStorage.getItem("userData") || "{}");
 
     if (userData[email]) {
-      alert("User already exists.");
+      toast.success("User already exists!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       navigate("/login");
     } else {
       pushUserData();
@@ -26,7 +29,9 @@ const SignUp = ({ onSwitch }) => {
     const userData = JSON.parse(sessionStorage.getItem("userData") || "{}");
     userData[email] = data;
     sessionStorage.setItem("userData", JSON.stringify(userData));
-    alert("User registered successfully!");
+    toast.success("User registered successfully !", {
+      position: "bottom-right",
+    });
     navigate("/login");
   };
 
@@ -93,9 +98,9 @@ const SignUp = ({ onSwitch }) => {
         </form>
         <h4 className="mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-500">
+          <Link to="/login" className="text-blue-500">
             Log In
-          </a>
+          </Link>
         </h4>
       </div>
     </>

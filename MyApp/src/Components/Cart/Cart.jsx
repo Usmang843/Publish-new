@@ -5,7 +5,7 @@ function Cart() {
   const [total, setTotal] = useState(0)
 
     const carts = JSON.parse(localStorage.getItem('cart')) || []
-
+    
     useEffect(() => {
       const total = carts.reduce((acc, item) => {
         return acc + (item.price * item.quantity)
@@ -112,7 +112,7 @@ function Cart() {
                 <span className="font-semibold text-sm">$ {total?.toFixed(2)}</span>
               </div>
               <div className="py-7 mt-2">
-                <label for="promo" className="font-semibold inline-block text-sm uppercase">Promo Code</label>
+                <label htmlFor="promo" className="font-semibold inline-block text-sm uppercase">Promo Code</label>
                 <input type="text" id="promo" placeholder="Enter your code" className="p-2 text-sm w-full" />
               </div>
               <button className="bg-red-500 hover:bg-red-600 px-3 py-1 text-sm text-white uppercase">Apply</button>

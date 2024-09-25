@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 
 const Search = () => {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
   const { inputValue } = useParams();
 
   useEffect(() => {
@@ -13,15 +12,13 @@ const Search = () => {
       .then((response) => response.json())
       .then((data) => setProducts(data));
 
-    fetch("/categories.json")
-      .then((response) => response.json())
-      .then((data) => setCategories(data));
+    
   }, []);
 
   return (
     <>
       {/* Search */}
-      <div
+      <div className=""
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >
         <div>
@@ -36,6 +33,7 @@ const Search = () => {
               .filter((product) => product.Category === inputValue) // Filter products by category
               .map((product) => (
                 <ProductCard key={product.id} product={product} />
+                
               ))}
           </div>
         </div>

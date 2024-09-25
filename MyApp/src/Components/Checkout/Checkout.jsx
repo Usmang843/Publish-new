@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Checkout() {
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
-    firstName: '',
-    cardNumber: '',
+    firstName: "",
+    cardNumber: "",
   });
 
   const handleChange = (e) => {
@@ -16,7 +20,19 @@ function Checkout() {
   };
 
   const handleSubmit = (e) => {
-    alert(`Order placed`);
+    e.preventDefault();
+    const { firstName, cardNumber } = formData;
+    if (!firstName || !cardNumber) {
+      toast.info("Please fill in both fields.", {
+        position: "bottom-right",
+      });
+      return;
+    } else {
+      toast.success("Order placed", {
+        position: "bottom-right",
+      });
+      navigate("/");
+    }
   };
 
   return (
@@ -58,13 +74,13 @@ function Checkout() {
         </div>
 
         <div className="flex justify-end">
-          <Link to='/'
+          <button
             onClick={() => handleSubmit()}
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none"
           >
             Place Order
-          </Link>
+          </button>
         </div>
       </form>
     </div>

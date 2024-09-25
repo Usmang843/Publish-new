@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const Login = ({ onSwitch }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -12,12 +13,16 @@ const Login = ({ onSwitch }) => {
     const userData = JSON.parse(sessionStorage.getItem("userData") || "{}");
 
     if (!userData[email]) {
-      alert("User doesn't exist");
+      toast.info("User doesn't exist!", {
+        position: "bottom-right",
+      });
     } else if (userData[email].password === password) {
       sessionStorage.setItem("currentloggedin", email);
       navigate("/");
     } else {
-      alert("Wrong Password!");
+      toast.error("Wrong Password!", {
+        position: "bottom-right",
+      });
     }
   };
 
@@ -36,7 +41,7 @@ const Login = ({ onSwitch }) => {
                 
                 <input type="submit" className="bg-blue-500 text-white py-2 px-4 rounded" />
             </form>
-            <h4 className="mt-4">Don't have an account? <a href="/signup" className="text-blue-500">Sign Up</a></h4>
+            <h4 className="mt-4">Don't have an account? <Link to="/signup" className="text-blue-500">Sign Up</Link></h4>
         </div>
     </>
   );

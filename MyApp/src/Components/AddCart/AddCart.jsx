@@ -2,51 +2,63 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {  toast } from "react-toastify";
+
 
 const AddCart = () => {
   const { id } = useParams();
-  
   const [product, setProduct] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await fetch(`/flashSale.json`);
       const data = await response.json();
-      console.log(id);
-      setProduct(data[id-1]);
+      setProduct(data[id - 1]);
     };
     fetchProduct();
   }, []);
 
   const handleCart = (product) => {
-    // console.log(Product);
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const isProductExist = cart.find((item) => item.id === product.id);
-    if (isProductExist) {
-      const updateCart = cart.map((item) => {
-        if (item.id === product.id) {
-          return {
-            ...item,
-            quantity: item.quantity + 1,
-          };
-        }
-        return item;
+    const sessionDetail = sessionStorage.getItem("currentloggedin");
+    if (sessionDetail) {
+      if (isProductExist) {
+        const updateCart = cart.map((item) => {
+          if (item.id === product.id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1,
+            };
+          }
+          return item;
+        });
+        localStorage.setItem("cart", JSON.stringify(updateCart));
+      } else {
+        localStorage.setItem(
+          "cart",
+          JSON.stringify([...cart, { ...product, quantity: 1 }])
+        );
+      }
+      toast.success("Added to Cart!", {
+        position: "bottom-right",
       });
-      localStorage.setItem("cart", JSON.stringify(updateCart));
+      navigate("/cart");
     } else {
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([...cart, { ...product, quantity: 1 }])
-      );
+      toast.info("Please login to add to Cart!", {
+        position: "bottom-right",
+      });
+      navigate("/login");
     }
-    alert("Added to Cart");
   };
 
   if (!Object.keys(product).length > 0) return <div>Product Not Found</div>;
 
   return (
     <>
-      {" "}
+      
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -198,13 +210,12 @@ const AddCart = () => {
                   ${product?.price}
                 </span>
                 <div className=" flex">
-                  <Link
-                    to={"/cart"}
+                  <button
                     className="flex ml-auto text-white bg-black border-0 py-2 px-6 focus:outline-none hover:bg-white hover:text-black rounded"
                     onClick={() => handleCart(product)}
                   >
                     Add to Cart
-                  </Link>
+                  </button>
                 </div>
                 <Link
                   to={"/cart"}

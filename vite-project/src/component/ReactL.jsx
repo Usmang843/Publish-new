@@ -2,9 +2,6 @@ import React from "react";
 
 const ReactL = () => {
   
-  
-  
-  
 
   return (
     <>
