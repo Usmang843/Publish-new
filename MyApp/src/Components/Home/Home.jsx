@@ -14,18 +14,18 @@ const Home = () => {
           />
         </div>
 
-        {/* Flash Sale Section */}
-        <div className="flash-sale-section py-8">
-          <h2 className="text-2xl font-bold text-gray-900">Flash Sale</h2>
-          <ProductList />
-        </div>
-
         {/* Best Selling Products Section */}
         <div className="best-selling-products-section py-8">
           <h2 className="text-2xl font-bold text-gray-900">
             Best Selling Products
           </h2>
           <CategoriesList />
+        </div>
+        
+        {/* Flash Sale Section */}
+        <div className="flash-sale-section py-8">
+          <h2 className="text-2xl font-bold text-gray-900">Flash Sale</h2>
+          <ProductList />
         </div>
       </div>
     </div>

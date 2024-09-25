@@ -20,18 +20,24 @@ const Category = () => {
 
   return (
     <>
-      {/* {console.log(categories[0])} */}
-      {console.log(products[0])}
       <div
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >
-        {categories.map((category) => (
-          
-          <ProductCard key={category.id} product={category} />
-        ))}
-        {/* {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))} */}
+        <div>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {products
+              .filter((product) => product.Category === title) // Filter products by category
+              .map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+          </div>
+        </div>
       </div>
     </>
   );

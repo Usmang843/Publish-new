@@ -1,52 +1,102 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ onSwitch }) => {
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("user", JSON.stringify({ email }));
-    alert("Signed up!");
+    const userData = JSON.parse(sessionStorage.getItem("userData") || "{}");
+
+    if (userData[email]) {
+      alert("User already exists.");
+      navigate("/login");
+    } else {
+      pushUserData();
+    }
+  };
+
+  const pushUserData = () => {
+    const data = { fname, lname, password };
+    const userData = JSON.parse(sessionStorage.getItem("userData") || "{}");
+    userData[email] = data;
+    sessionStorage.setItem("userData", JSON.stringify(userData));
+    alert("User registered successfully!");
+    navigate("/login");
   };
 
   return (
     <>
-      <div className="flex flex-col items-center h-96">
-        <h2 className="text-2xl mb-4 mt-20" >Signup</h2>
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-3xl mb-4">News Crud Sign Up</h1>
         <form
-          className="bg-white p-6 rounded shadow-md w-80"
           onSubmit={handleSubmit}
+          className="bg-white shadow-md rounded px-8 py-6"
         >
+          <label className="block mb-2" htmlFor="fname">
+            First Name:
+          </label>
+          <input
+            type="text"
+            id="fname"
+            className="border rounded w-full py-2 px-3 mb-4"
+            required
+            value={fname}
+            onChange={(e) => setFname(e.target.value)}
+          />
+
+          <label className="block mb-2" htmlFor="lname">
+            Last Name:
+          </label>
+          <input
+            type="text"
+            id="lname"
+            className="border rounded w-full py-2 px-3 mb-4"
+            required
+            value={lname}
+            onChange={(e) => setLname(e.target.value)}
+          />
+
+          <label className="block mb-2" htmlFor="email">
+            Email:
+          </label>
           <input
             type="email"
-            placeholder="Email"
+            id="email"
+            className="border rounded w-full py-2 px-3 mb-4"
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border p-2 mb-4 w-full"
-            required
           />
+
+          <label className="block mb-2" htmlFor="password">
+            Password:
+          </label>
           <input
             type="password"
-            placeholder="Password"
+            id="password"
+            className="border rounded w-full py-2 px-3 mb-4"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border p-2 mb-4 w-full"
-            required
           />
-          <button
+
+          <input
             type="submit"
-            className="bg-blue-500 text-white p-2 rounded w-full"
-          >
-            Signup
-          </button>
-          <Link to='/login' className="mt-4 text-blue-500">
-            Already have an account?
-            </Link>
+            className="bg-blue-500 text-white py-2 px-4 rounded"
+          />
         </form>
-        <div className="mt-20"></div>
+        <h4 className="mt-4">
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-500">
+            Log In
+          </a>
+        </h4>
       </div>
     </>
   );

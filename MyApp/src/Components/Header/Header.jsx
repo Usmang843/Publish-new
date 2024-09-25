@@ -1,7 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const checkVal = () => {
+    !inputValue && alert('Please enter Catogery');
+  }
+
   return (
     <div>
       <header className="bg-white shadow sticky top-0 z-50">
@@ -13,12 +24,15 @@ const Header = () => {
           <div className="flex items-center">
             <input
               type="text"
+              value={inputValue}
               placeholder="Search in Daraz"
+              onChange={handleChange}
               className="border border-gray-300 rounded-l-md p-2 focus:outline-none focus:ring focus:ring-blue-400"
             />
             <Link
-              to="/search"
+              to= {inputValue ? `/search/${inputValue}` : ``}
               className="bg-blue-500 text-white rounded-r-md px-4 py-2 hover:bg-blue-600"
+              onClick={checkVal}
             >
               Search
             </Link>
