@@ -4,12 +4,7 @@ import { Link } from "react-router-dom";
 const CategoriesCard = ({ categories }) => {
   return (
     <>
-      <div
-        style={{
-          padding: "10px",
-          margin: "10px",
-          width: "150px",
-        }}
+      <div className="p-2.5 m-2 w-36"
       >
         <Link to={`/category/${categories.title}`}>
           <img

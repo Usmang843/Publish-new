@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Product 1",
     "Category": "Category1",
-    "image": "https://img.drz.lazcdn.com/static/pk/p/bd6c500a6a3b2198e34d7bf2381cf7dd.jpg_200x200q80.jpg_.webp",
+    "image": "https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9way1saXZlLTIxLnNsYXRpYy5uZXQva2YvUzQ0YTkwN2ZkZTNhZjQ0NDhhMjk2ZWI1MTg2ZDk5ODhiVC5qcGc=_200x200q80.png_.webp",
     "price": 100
   },
   {
@@ -230,6 +230,41 @@
     "Category": "Category8",
     "image": "https://img.drz.lazcdn.com/static/pk/p/89b0a85a44e8892bd98f7cd9e6b4b69e.png_200x200q80.png_.webp",
     "price": 1000
+  },
+  {
+    "id": 33,
+    "title": "Product 33",
+    "Category": "Category1",
+    "image": "https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9way1saXZlLTIxLnNsYXRpYy5uZXQva2YvUzQ5MWNlMDNmNTQ4NzQ2MjdhY2MxZjk5MGYyMTBkN2Rici5qcGc=_200x200q80.png_.webp",
+    "price": 1182
+  },
+  {
+    "id": 34,
+    "title": "Product 34",
+    "Category": "Category1",
+    "image": "https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9way1saXZlLTIxLnNsYXRpYy5uZXQva2YvUzlkYThjNjMwYmQxZDQxZDFhOGZiMjQwYjI4OTdkYjEwMC5qcGc=_200x200q80.png_.webp",
+    "price": 643
+  },
+  {
+    "id": 35,
+    "title": "Product 35",
+    "Category": "Category1",
+    "image": "https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXoucGsvcC9iMDkwNTRkN2Q0NzhhOTMyMGQzMWNiNjYxZWMyYWNmZC5qcGc=_200x200q80.png_.webp",
+    "price": 1250
+  },
+  {
+    "id": 36,
+    "title": "Product 36",
+    "Category": "Category1",
+    "image": "https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXoucGsvcC81YTg4MWNjMTkxMDdlOTRjNDZmOWMzODU2YWM1NzNkMy5qcGc=_200x200q80.png_.webp",
+    "price": 4377
+  },
+  {
+    "id": 37,
+    "title": "Product 37",
+    "Category": "Category1",
+    "image": "https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXoucGsvcC9iYzFiZWM3MTU4YTRlNzFlYzAyMTY2ZjdhMTRiOTk5NC5qcGc=_200x200q80.png_.webp",
+    "price": 3523
   }
 
 ]
