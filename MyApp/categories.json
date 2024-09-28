@@ -1,42 +1,48 @@
 [
   {
     "id": 1,
-    "title": "Category1",
-    "image": "https://img.drz.lazcdn.com/static/pk/p/5a6b9ca176630ead6653eb10ae564a68.jpg_200x200q80.jpg_.webp"
+    "title": "Cleaning Buckets",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/10f7f455de1ce864ec4576d73dfd31b0.jpg_400x400q75.jpg_.webp"
   },
   {
     "id": 2,
-    "title": "Category2",
-    "image": "https://img.drz.lazcdn.com/static/pk/p/660d73036c4d1eafd3f0f5a83b7ee87f.jpg_200x200q80.jpg_.webp"
+    "title": "Sunglasses",
+    "image": "https://img.drz.lazcdn.com/g/kf/Sefaf9500d6a144a0bc98d8c6cc629c7eL.jpg_400x400q75.jpg_.webp"
   },
   {
     "id": 3,
-    "title": "Category3",
-    "image": "https://img.drz.lazcdn.com/static/pk/p/70988436f3b4f938491f343e4289672e.jpg_200x200q80.jpg_.webp"
+    "title": "Shoes",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/de0abe04f6cf32a931a5a75e2a8a4111.jpg_400x400q75.jpg_.webp"
   },
   {
     "id": 4,
-    "title": "Category4",
-    "image": "https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXoucGsvcC85ODZhZjBmOTlkODgwMTM1MjYzNzVlMTc4ZmM5NTIyMy5qcGc=_200x200q80.png_.webp"
+    "title": "Kurtas",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/f4102575c357b26f2e262f08ac63eb8d.jpg_400x400q75.jpg_.webp"
   },
   {
     "id": 5,
-    "title": "Category5",
-    "image": "https://img.drz.lazcdn.com/g/kf/S09b8b2d845eb4ff18d7d4ede23038983q.jpg_200x200q80.jpg_.webp"
+    "title": "Joggers & Sweats",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/6dbd0a4d814d8fe8439423987ce30b6b.jpg_400x400q75.jpg_.webp"
   },
   {
     "id": 6,
-    "title": "Category6",
-    "image": "https://img.drz.lazcdn.com/g/kf/S5cf619c1d21842fe9452b359b5f1ca83B.jpg_200x200q80.jpg_.webp"
+    "title": "Hats & Caps",
+    "image": "https://img.drz.lazcdn.com/static/pk/p/97284bb16c47dfd16b59852a55ce8b68.png_200x200q75.png_.webp"
   },
   {
     "id": 7,
-    "title": "Category7",
-    "image": "https://img.drz.lazcdn.com/static/pk/p/be89b93cabc171cefa64b476d6219280.png_200x200q80.png_.webp"
+    "title": "Belts",
+    "image": "https://img.drz.lazcdn.com/g/kf/Sea18560b837c4601a7e7b1c7f5f3c13dI.jpg_200x200q75.jpg_.webp"
   },
   {
     "id": 8,
-    "title": "Category8",
-    "image": "https://img.drz.lazcdn.com/static/pk/p/619cb9366e65bcc2f7884e5c27b05cbc.jpg_200x200q80.jpg_.webp"
+    "title": "Ties & Bow Ties",
+    "image": "https://img.drz.lazcdn.com/g/kf/Sb279bac364284b42a53485eee3b69b25q.jpg_200x200q75.jpg_.webp"
+  },
+  {
+    "id": 9,
+    "title": "Flash Sale",
+    "image": "https://static-01.daraz.pk/p/52c754a2225e4d67c704c9a0a2966607.jpg_460x460q75.jpg_.webp"
   }
+
 ]

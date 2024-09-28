@@ -248,9 +248,7 @@ const Category = () => {
                         {product.title}
                         <br />
                         <span className="text-zinc-500">
-                          Lorem, ipsum dolor sit amet consectetur adipisicing
-                          elit. Ex accusamus cumque at ratione, dolore
-                          perspiciatis officiis sequi dolorem ut. Quisquam
+                          {product.desc}
                         </span>
                       </h3>
                     </Link>

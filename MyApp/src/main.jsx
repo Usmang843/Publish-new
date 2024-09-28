@@ -17,19 +17,20 @@ import AddCart from "./Components/AddCart/AddCart.jsx";
 import Category from "./Components/Category/Category.jsx";
 import Cart from "./Components/Cart/Cart.jsx";
 import Checkout from "./Components/Checkout/Checkout.jsx";
+import FlashSale from "./Components/flashSale/FlashSale.jsx"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="" element={<Home  />} />
+      <Route path="" element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="search/:inputValue" element={<Search />} />
+      <Route path="flashSale" element={<FlashSale />} />
       <Route path="cart" element={<Cart />} />
       <Route path="addToCart/:id" element={<AddCart />} />
       <Route path="category/:title" element={<Category />} />
-      <Route path='/checkout' element={<Checkout />} />
-
+      <Route path="/checkout" element={<Checkout />} />
     </Route>
   )
 );

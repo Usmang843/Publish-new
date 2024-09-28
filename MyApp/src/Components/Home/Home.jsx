@@ -1,6 +1,7 @@
 import React from "react";
 import ProductList from "../Products/ProductList";
 import CategoriesList from "../Categories/CategoriesList";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -8,10 +9,12 @@ const Home = () => {
       <div className="container mx-auto p-4">
         {/* Top Banner Section */}
         <div className="  bg-gray-100 py-4">
+          <Link to = "/flashSale">
           <img
-            src="https://img.lazcdn.com/us/domino/071c3c3a-4f39-4a66-b4b6-597335fa2967_PK-1976-688.jpg_1200x1200q80.jpg_.webp"
+            src="https://img.lazcdn.com/us/domino/3ef3942f-6c4f-4da8-8a5f-8215f7199b31_PK-1976-688.jpg_2200x2200q80.jpg_.webp"
             alt="Top Banner"
           />
+          </Link>
         </div>
 
         {/* Best Selling Products Section */}
