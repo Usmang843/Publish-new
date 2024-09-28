@@ -7,6 +7,7 @@ import Input from "./Input";
 import Logo from "./Logo";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const Signup = () => {
   const navigate = useNavigate();
