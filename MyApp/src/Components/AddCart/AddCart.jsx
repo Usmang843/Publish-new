@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {  toast } from "react-toastify";
-
+import { toast } from "react-toastify";
 
 const AddCart = () => {
   const { id } = useParams();
@@ -58,7 +57,6 @@ const AddCart = () => {
 
   return (
     <>
-      
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
