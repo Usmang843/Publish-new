@@ -1,134 +1,50 @@
-import React, { useState, useEffect } from "react";
-import ProductCard from "../Products/ProductCard";
-import { Link, useParams } from "react-router-dom";
-import Dropdown from "../Dropdown/Dropdown";
+npm create vite@latest my-progress-bar-app --template react
+cd my-progress-bar-app
+npm install
 
-const Category = () => {
-  const [products, setProducts] = useState([]);
-  const { title } = useParams();
-  const filteredProducts = products.filter((product) => product.Category === title);
-  const [isMultiDropdownOpen, setMultiDropdownOpen] = useState(false);
-  const [viewMode, setViewMode] = useState("grid"); // "grid" or "list"
 
-  const handleClick = () => {
-    setMultiDropdownOpen(!isMultiDropdownOpen);
-  };
+// src/ProgressBar.jsx
+import React from 'react';
 
-  const handleViewChange = (mode) => {
-    setViewMode(mode);
-  };
-
-  useEffect(() => {
-    fetch("/flashSale.json")
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
-  }, []);
-
+const ProgressBar = ({ progress }) => {
   return (
-    <>
-      <div className="mt-2 mx-60">
-        <Dropdown />
-      </div>
-      <div className="mt-4 mx-60 text-blue-600 flex">
-        <Link to="/">Home</Link>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-          <path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" />
-        </svg>
-        {title}
-      </div>
-      <hr className="mt-4 mb-2 mx-60" />
-      <div className="mt-2 mx-60">Category</div>
-      <div className="text-sm flex">
-        <div className="mt-2 ml-60 text-orange-500">{title}</div>
-        <div className="ml-40 text-zinc-500">
-          {filteredProducts.length} items found in {title}
-        </div>
-        <div className="ml-96">
-          Sort By:
-          <button
-            className="ml-2 text-black bg-gray-300 font-medium rounded-lg text-sm px-9 py-2.5 inline-flex items-center"
-            onClick={handleClick}
-          >
-            Best Match
-            <svg
-              className="w-2.5 h-2.5 ms-3"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 1 4 4 4-4"
-              />
-            </svg>
-          </button>
-          {isMultiDropdownOpen && (
-            <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-              <ul className="py-2 text-sm text-gray-700 dark:text-black-200">
-                <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Best Match
-                </li>
-                <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Price low to high
-                </li>
-                <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                  Price high to low
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-        <div className="mt-2 ml-20 flex items-center">
-          <span className="mr-2"> Views:</span>
-          <svg
-            onClick={() => handleViewChange("grid")}
-            className={`cursor-pointer ${viewMode === "grid" ? "text-blue-500" : ""}`}
-            width="18px"
-            height="18px"
-            viewBox="0 0 122.88 122.566"
-          >
-            <g>
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M3.78,66.082h47.875c2.045,0,3.717,1.988,3.717,4.414v46.479 c0,2.43-1.671,4.416-3.717,4.416H3.78c-2.043,0-3.717-1.986-3.717-4.416V70.496C0.063,68.07,1.737,66.082,3.78,66.082L3.78,66.082z M71.224,0H119.1c2.046,0,3.717,1.986,3.717,4.415v46.479c0,2.429-1.671,4.413-3.717,4.413H71.224 c-2.045,0-3.714-1.984-3.714-4.413V4.415C67.51,1.986,69.179,0,71.224,0L71.224,0z M3.714,0h47.878 c2.045,0,3.717,1.986,3.717,4.415v46.479c0,2.429-1.671,4.413-3.717,4.413H3.714C1.671,55.307,0,53.323,0,50.894V4.415 C0,1.986,1.671,0,3.714,0L3.714,0z M71.287,67.26h47.876c2.043,0,3.717,1.986,3.717,4.416v46.479c0,2.426-1.674,4.412-3.717,4.412 H71.287c-2.045,0-3.717-1.986-3.717-4.412V71.676C67.57,69.246,69.242,67.26,71.287,67.26L71.287,67.26z"
-              />
-            </g>
-          </svg>
-          <svg
-            onClick={() => handleViewChange("list")}
-            className={`ml-3 cursor-pointer ${viewMode === "list" ? "text-blue-500" : ""}`}
-            xmlns="http://www.w3.org/2000/svg"
-            fillRule="evenodd"
-            clipRule="evenodd"
-            viewBox="0 0 512 474.051"
-          >
-            <path d="M11.216 0H88.37c6.169 0 11.216 5.047 11.216 11.216v70.947c0 6.17-5.047 11.217-11.216 11.217H11.216C5.047 93.38 0 88.333 0 82.163V11.216C0 5.047 5.047 0 11.216 0zm152.662 380.672h336.906c6.169 0 11.216 5.05 11.216 11.216v70.947c0 6.166-5.051 11.216-11.216 11.216H163.878c-6.166 0-11.217-5.046-11.217-11.216v-70.947c0-6.169 5.047-11.216 11.217-11.216zm-152.662 0H88.37c6.169 0 11.216 5.047 11.216 11.216v70.947c0 6.17-5.047 11.216-11.216 11.216H11.216C5.047 474.051 0 469.005 0 462.835v-70.947c0-6.169 5.047-11.216 11.216-11.216zm152.662-190.336h336.906c6.169 0 11.216 5.05 11.216 11.216v70.947c0 6.166-5.051 11.216-11.216 11.216H163.878c-6.166 0-11.217-5.046-11.217-11.216v-70.947c0-6.17 5.047-11.216 11.217-11.216zm-152.662 0H88.37c6.169 0 11.216 5.046 11.216 11.216v70.947c0 6.17-5.047 11.216-11.216 11.216H11.216C5.047 283.715 0 278.669 0 272.499v-70.947c0-6.17 5.047-11.216 11.216-11.216zM163.878 0h336.906C506.953 0 512 5.051 512 11.216v70.947c0 6.166-5.051 11.217-11.216 11.217H163.878c-6.166 0-11.217-5.047-11.217-11.217V11.216C152.661 5.047 157.708 0 163.878 0z" />
-          </svg>
-        </div>
-      </div>
-      <hr className="mt-4 mb-2 mx-60" />
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-        <div>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
-            {viewMode === "grid"
-              ? filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))
-              : filteredProducts.map((product) => (
-                  <div key={product.id} className="w-full flex mb-4">
-                    <ProductCard product={product} />
-                  </div>
-                ))}
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="w-full bg-gray-200 rounded-full h-4">
+      <div
+        className="bg-blue-600 h-4 rounded-full transition-all duration-300"
+        style={{ width: `${progress}%` }}
+      ></div>
+    </div>
   );
 };
 
-export default Category;
+export default ProgressBar;
+
+// src/App.jsx
+import React, { useState } from 'react';
+import ProgressBar from './ProgressBar';
+
+function App() {
+  const [progress, setProgress] = useState(0);
+
+  const handleProgress = () => {
+    if (progress < 100) {
+      setProgress(prev => Math.min(prev + 10, 100));
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-2xl mb-4">Progress Bar Example</h1>
+      <ProgressBar progress={progress} />
+      <button
+        onClick={handleProgress}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Increase Progress
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
