@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -12,6 +12,7 @@ const Header = () => {
   const navigate = useNavigate();
   const sessionDetail = sessionStorage.getItem("currentloggedin");
   const userData = sessionStorage.getItem("userData");
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     fetch("/categories.json")
@@ -21,6 +22,25 @@ const Header = () => {
   const categoryExists = categories.some(
     (category) => category.title === inputValue
   );
+
+  const handleScroll = () => {
+    const scrollTop = window.scrollY; // Amount of pixels scrolled vertically
+    const windowHeight = window.innerHeight; // Height of the viewport
+    const documentHeight = document.documentElement.scrollHeight; // Total height of the document
+
+    // Calculate scroll progress
+    const totalScrollableHeight = documentHeight - windowHeight;
+    const scrollProgress = (scrollTop / totalScrollableHeight) * 100;
+
+    setProgress(scrollProgress);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
@@ -45,11 +65,10 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <header className="bg-white shadow sticky top-0 z-50">
+    <div className="flex flex-col mb-20">
+      <header className="bg-white shadow fixed top-0 left-0 w-full z-50">
         <div className="container mx-auto flex justify-between items-center p-4">
           <Link to="/" className="text-xl font-bold">
-            {" "}
             Daraz
           </Link>
           <div className="flex items-center">
@@ -78,7 +97,6 @@ const Header = () => {
                 to="/signup"
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
               >
-                {" "}
                 Sign Up
               </Link>
             )}
@@ -87,22 +105,21 @@ const Header = () => {
                 onClick={handleLogout}
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
               >
-                {" "}
                 Logout
               </button>
             )}
             {sessionDetail && (
               <Link
-                to={"/cart"}
+                to="/cart"
                 className="inline-flex items-center bg-black border-0 py-2 px-4 text-white focus:outline-none hover:bg-white hover:text-black rounded text-base mt-4 md:mt-0"
               >
                 Go To Cart
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   className="w-4 h-4 ml-1"
                   viewBox="0 0 24 24"
                 >
@@ -113,6 +130,7 @@ const Header = () => {
           </div>
         </div>
       </header>
+      <ProgressBar progress={progress}/>
     </div>
   );
 };

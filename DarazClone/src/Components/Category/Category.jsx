@@ -234,25 +234,28 @@ const Category = () => {
                 <ProductCard key={product.id} product={product} />
               ))
             : filteredProducts.map((product) => (
-                <div key={product.id} className="w-full flex mb-4">
-                  <div className="flex">
-                    <Link to={`/addToCart/${product.id}`} className=" h-full">
-                      <img
-                       className="w-96"
-                        src={product.image}
-                        alt={product.title}
-                      />
-                    </Link>
+                <div key={product.id} className="w-full flex mb-4 items-start">
+                  <Link
+                    to={`/addToCart/${product.id}`}
+                    className="flex-shrink-0"
+                  >
+                    <img
+                      className="w-60"
+                      src={product.image}
+                      alt={product.title}
+                    />
+                  </Link>
+                  <div className="flex flex-col justify-start ml-4">
                     <Link to={`/addToCart/${product.id}`}>
-                      <h3 className="mt-2 ml-20">
+                      <h3 className="mt-2">
                         {product.title}
                         <br />
-                        <span className="text-zinc-500">
-                          {product.desc}
-                        </span>
+                        <span className="text-zinc-500">{product.desc}</span>
                       </h3>
                     </Link>
-                    <p className="mt-10 ml-20 text-orange-400 font-bold">Price: ${product.price}</p>
+                    <p className="mt-2 text-orange-400 font-bold">
+                      Price: ${product.price}
+                    </p>
                   </div>
                 </div>
               ))}

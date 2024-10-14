@@ -8,6 +8,7 @@ const CategoriesCard = ({ categories }) => {
       >
         <Link to={`/category/${categories.title}`}>
           <img
+          
             src={categories.image}
             alt={categories.title}
             style={{ width: "100%" }}

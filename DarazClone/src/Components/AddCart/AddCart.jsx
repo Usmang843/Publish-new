@@ -204,7 +204,7 @@ const AddCart = () => {
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <span className="title-font font-medium text-2xl text-gray-900">
+                <span className="title-font font-medium text-2xl text-orange-400 font-bold">
                   ${product?.price}
                 </span>
                 <div className=" flex">
