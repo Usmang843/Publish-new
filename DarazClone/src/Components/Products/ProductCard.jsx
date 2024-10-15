@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
       <div className="border border-gray-300 p-2.5 m-1 w-38">
         <Link to={`/addToCart/${product.id}`}>
           <img className="w-full h-60 object-cover" src={product.image} alt={product.title} />
-          <h3 className="text-md mt-2">{product.title}</h3>
+          <h3 className="text-md mt-2 font-canada">{product.title}</h3>
           <p className="text-sm text-orange-400 font-bold">Price: ${product.price}</p>
         </Link>
       </div>

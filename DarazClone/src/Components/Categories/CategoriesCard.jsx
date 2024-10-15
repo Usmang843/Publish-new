@@ -13,7 +13,7 @@ const CategoriesCard = ({ categories }) => {
             alt={categories.title}
             style={{ width: "100%" }}
           />
-          <h3>{categories.title}</h3>
+          <h3 className="font-canada">{categories.title}</h3>
         </Link>
       </div>
     </>
