@@ -12,7 +12,6 @@ import Layout from "./Layout.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Login from "./Components/Login/Login.jsx";
 import SignUp from "./Components/SignUp/SignUp.jsx";
-import Search from "./Components/Search/Search.jsx";
 import AddCart from "./Components/AddCart/AddCart.jsx";
 import Category from "./Components/Category/Category.jsx";
 import Cart from "./Components/Cart/Cart.jsx";
@@ -24,12 +23,11 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route path="" element={<Home />} />
       <Route path="login" element={<Login />} />
-      <Route path="signup" element={<SignUp />} />
-      <Route path="search/:inputValue" element={<Search />} />
+      <Route path="signup" element={<SignUp />} />     
       <Route path="flashSale" element={<FlashSale />} />
       <Route path="cart" element={<Cart />} />
       <Route path="addToCart/:id" element={<AddCart />} />
-      <Route path="category/:title" element={<Category />} />
+      <Route path="category/:title/:inputValue?" element={<Category />} />
       <Route path="/checkout" element={<Checkout />} />
     </Route>
   )

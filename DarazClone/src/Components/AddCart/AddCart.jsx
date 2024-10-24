@@ -4,20 +4,76 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import ReviewForm from "../Review/ReviewForm";
+import ReviewsList from "../Review/ReviewsList";
+import ReviewStars from "../Review/ReviewStars";
 
 const AddCart = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [reviews, setReviews] = useState([]);
+  const totalRatings = reviews.reduce((acc, review) => acc + review.rating, 0);
+  const averageRating = totalRatings / reviews.length;
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const response = await fetch(`/flashSale.json`);
-      const data = await response.json();
-      setProduct(data[id - 1]);
+    const storedReviews =
+      JSON.parse(localStorage.getItem("productReviews")) || {};
+    setReviews(storedReviews[id] || []);
+  }, [id]);
+
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+  const sessionDetail = sessionStorage.getItem("currentloggedin");
+  // console.log(sessionDetail)
+
+  // Function to add a new review
+  const handleAddReview = (newReview) => {
+    const storedReviews =
+      JSON.parse(localStorage.getItem("productReviews")) || {};
+    const updatedReviews = [
+      ...(storedReviews[id] || []),
+      {
+        ...newReview,
+        name:
+          userData[sessionDetail].fname + " " + userData[sessionDetail].lname,
+      },
+    ];
+
+    storedReviews[id] = updatedReviews;
+    localStorage.setItem("productReviews", JSON.stringify(storedReviews));
+    setReviews(updatedReviews);
+  };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:4000/products");
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        setProduct(data[id - 1]);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchProduct();
-  }, []);
+
+    fetchProducts();
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   const handleCart = (product) => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -55,17 +111,27 @@ const AddCart = () => {
 
   if (!Object.keys(product).length > 0) return <div>Product Not Found</div>;
 
+  const words = product.desc.split(" ");
+  const chunkWords = (arr, size) => {
+    const result = [];
+    for (let i = 0; i < arr.length; i += size) {
+      result.push(arr.slice(i, i + size).join(" "));
+    }
+    return result;
+  };
+  const groupedWords = chunkWords(words, 4);
+  
   return (
     <>
-      <section className="text-gray-600 body-font overflow-hidden">
+      <section className="text-gray-600 body-font overflow-hidden bg-gray-100">
         <div className="container px-5 py-24 mx-auto">
-          <div className="lg:w-4/5 mx-auto flex flex-wrap">
+          <div className="lg:w-2/3 mx-auto flex flex-wrap bg-white p-4">
             <img
               alt={product?.title}
-              className="lg:w-1/2 w-full lg:h-auto h-64 max-h-[400px] object-contain object-center rounded"
+              className="lg:w-1/3 w-full lg:h-auto h-60 max-h-[400px] object-contain object-center rounded"
               src={product?.image}
             />
-            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+            <div className="max-h-md lg:w-2/3 w-full h-full p-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
                 {product?.category}
               </h2>
@@ -74,62 +140,10 @@ const AddCart = () => {
               </h1>
               <div className="flex mb-4">
                 <span className="flex items-center">
-                  <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-yellow-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-yellow-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-yellow-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-yellow-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-gray-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <span className="text-gray-600 ml-3">4 Reviews</span>
+                  <ReviewStars rating={averageRating} />
+                  <span className="text-gray-600 ml-3">
+                    {reviews.length || "No"} Reviews
+                  </span>
                 </span>
                 <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                   <a className="text-gray-500">
@@ -178,7 +192,7 @@ const AddCart = () => {
                   <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
                   <button className="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
                 </div>
-                <div className="flex ml-6 items-center">
+                <div className="flex ml-6 items-center ">
                   <span className="mr-3">Size</span>
                   <div className="relative">
                     <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
@@ -203,7 +217,7 @@ const AddCart = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-around items-center">
                 <span className="title-font font-medium text-2xl text-orange-400 font-bold">
                   ${product?.price}
                 </span>
@@ -232,6 +246,37 @@ const AddCart = () => {
                 </Link>
               </div>
             </div>
+          </div>
+          <div className="lg:w-2/3 mx-auto bg-white m-4 ">
+            <h2 className="text-2xl font-bold bg-gray-50">
+              Product Details of {product.title}
+            </h2>
+            <div className="m-2 text-gray-600 p-2">
+              <span className="text-zinc-500">
+                <ul className="list-disc pl-5 space-y-2">
+                  {groupedWords.map((group, index) => (
+                    <li key={index} className="text-gray-700">
+                      {group}
+                    </li>
+                  ))}
+                </ul>
+              </span>
+            </div>
+          </div>
+          <div className="lg:w-2/3 mx-auto bg-white m-4 ">
+            <h2 className="text-2xl font-bold bg-gray-50">Ratings & Reviews</h2>
+
+            {sessionDetail ? (
+              <ReviewForm onAddReview={handleAddReview} />
+            ) : (
+              <div className="p-2 mt-4 text-gray-600">
+                Please log in to leave a review.
+              </div>
+            )}
+            <ReviewsList reviews={reviews} />
+            {reviews.length === 0 && (
+              <div className="p-2 mt-4 text-gray-500">Not Any Review</div>
+            )}
           </div>
         </div>
       </section>

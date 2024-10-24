@@ -7,9 +7,22 @@ const Dropdown = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("/categories.json")
-      .then((response) => response.json())
-      .then((data) => setCategories(data));
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:4000/categories");
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   const handleMouseOver = () => {
@@ -50,16 +63,18 @@ const Dropdown = () => {
       {isMultiDropdownOpen && (
         <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
           <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-            {categories.map((categories) => (
-              <li key={categories.id}>
-                <Link
-                  to={`/category/${categories.title}`}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  {categories.title}
-                </Link>
-              </li>
-            ))}
+            {categories
+              .filter((category) => category.id !== 9) // Filter out the category with id 9
+              .map((category) => (
+                <li key={category.id}>
+                  <Link
+                    to={`/category/${category.id}`}
+                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >
+                    {category.title}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
       )}

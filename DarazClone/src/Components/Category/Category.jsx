@@ -6,10 +6,28 @@ import Dropdown from "../Dropdown/Dropdown";
 
 const Category = () => {
   const [products, setProducts] = useState([]);
-  const { title } = useParams();
-  const filteredProducts = products.filter(
-    (product) => product.Category === title
-  );
+  const [category, setCategories] = useState([]);
+  const [displayProducts, setDisplayProducts] = useState([]);
+  const {title, inputValue} = useParams()
+  
+  const getCategoryIdByCategoryName = (title) => {
+    const categ = category.find((cat) => cat.id == title);
+    return categ ? categ.title : null; // Return null if category not found
+  };
+
+  const categoryName = getCategoryIdByCategoryName(title);
+
+  useEffect(() => {
+    if (inputValue) {
+      const categoryId = category.find(cat => cat.title === inputValue)?.id;
+      const searchedProducts = products.filter(product => product.category_id == categoryId);
+      setDisplayProducts(searchedProducts);
+    } else if (title) {
+      const filteredProducts = products.filter(product => product.category_id == title);
+      setDisplayProducts(filteredProducts);
+    }
+  }, [title, inputValue, products, category]);
+ 
   const [isMultiDropdownOpen, setMultiDropdownOpen] = useState(false);
   const [viewMode, setViewMode] = useState("grid"); // "grid" or "list"
 
@@ -22,13 +40,35 @@ const Category = () => {
 
   let item;
   useEffect(() => {
-    fetch("/flashSale.json")
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
+    const fetchData = async () => {
+      try {
+        const [productsResponse, categoriesResponse] = await Promise.all([
+          fetch("http://127.0.0.1:4000/products"),
+          fetch("http://127.0.0.1:4000/categories"),
+        ]);
+  
+        if (!productsResponse.ok || !categoriesResponse.ok) {
+          throw new Error("Network response was not ok");
+        }
+  
+        const productsData = await productsResponse.json();
+        const categoriesData = await categoriesResponse.json();
+  
+        setProducts(productsData);
+        setCategories(categoriesData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData();
   }, []);
+  
+  
+
 
   return (
-    <>
+    <div className="bg-gray-100">
       <div className="mt-2 mx-60">
         <Dropdown />
       </div>
@@ -37,14 +77,14 @@ const Category = () => {
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
           <path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" />
         </svg>
-        {title}
+        {inputValue || categoryName}
       </div>
       <hr className="mt-4 mb-2 mx-60" />
       <div className="mt-2 mx-60">Category</div>
       <div className="text-sm flex">
-        <div className="mt-2 ml-60 text-orange-500">{title}</div>
+        <div className="mt-2 ml-60 text-orange-500">  {inputValue || categoryName}</div>
         <div className="ml-40 text-zinc-500">
-          {filteredProducts.length} items found in {title}
+          {displayProducts.length} items found in {inputValue || categoryName}
         </div>
         <div className="ml-96">
           Sort By:
@@ -230,10 +270,10 @@ const Category = () => {
         </div>
         <div className="flex flex-1 flex-wrap justify-center mr-60">
           {viewMode === "grid"
-            ? filteredProducts.map((product) => (
+            ? displayProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))
-            : filteredProducts.map((product) => (
+            : displayProducts.map((product) => (
                 <div key={product.id} className="w-full flex mb-4">
                   <Link
                     to={`/addToCart/${product.id}`}
@@ -268,7 +308,7 @@ const Category = () => {
               ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
